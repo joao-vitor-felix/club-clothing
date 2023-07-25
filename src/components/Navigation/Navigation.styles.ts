@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import { AiFillShopping } from "react-icons/ai";
 
-export const Navigation = styled.nav`
+export const Nav = styled.nav`
   width: 100%;
   height: 5rem;
   background-color: ${({ theme }) => theme.colors.primary};
