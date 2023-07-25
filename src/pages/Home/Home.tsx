@@ -1,5 +1,11 @@
+import Categories from "../../components/Categories/Categories";
+
 const Home = () => {
-  return <></>;
+  return (
+    <>
+      <Categories />
+    </>
+  );
 };
 
 export default Home;
