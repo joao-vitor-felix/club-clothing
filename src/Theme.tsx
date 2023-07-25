@@ -6,7 +6,8 @@ const theme = {
     primary: "#212529"
   },
   text: {
-    primary: "#F8F9FA"
+    primary: "#F8F9FA",
+    secondary: "#343A40"
   }
 };
 
