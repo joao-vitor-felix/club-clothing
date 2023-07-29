@@ -8,6 +8,11 @@ const theme = {
   text: {
     primary: "#F8F9FA",
     secondary: "#343A40"
+  },
+  input: {
+    background: "#E9ECEF",
+    placeholder: "#6C757D",
+    error: "#FF6A6A"
   }
 };
 
