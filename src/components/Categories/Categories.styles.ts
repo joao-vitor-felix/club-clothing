@@ -17,25 +17,23 @@ export const Content = styled.div`
   grid-gap: 1.5rem;
   padding: 3rem;
 
-  div {
-    &:nth-child(1) {
-      grid-area: a;
-    }
+  & div:nth-child(1) {
+    grid-area: a;
+  }
 
-    &:nth-child(2) {
-      grid-area: b;
-    }
+  & div:nth-child(2) {
+    grid-area: b;
+  }
 
-    &:nth-child(3) {
-      grid-area: c;
-    }
+  & div:nth-child(3) {
+    grid-area: c;
+  }
 
-    &:nth-child(4) {
-      grid-area: d;
-    }
+  & div:nth-child(4) {
+    grid-area: d;
+  }
 
-    &:nth-child(5) {
-      grid-area: e;
-    }
+  & div:nth-child(5) {
+    grid-area: e;
   }
 `;
