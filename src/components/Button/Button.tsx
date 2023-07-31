@@ -1,7 +1,12 @@
-import { FC, ReactNode, ButtonHTMLAttributes } from "react";
+import {
+  FC,
+  ReactNode,
+  ButtonHTMLAttributes,
+  ComponentPropsWithoutRef
+} from "react";
 import * as S from "./Button.styles";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = ComponentPropsWithoutRef<"button"> & {
   children: ReactNode;
   icon?: ReactNode;
 };

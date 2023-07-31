@@ -37,7 +37,7 @@ export const InputContainer = styled.div`
   width: 100%;
   margin-bottom: 2rem;
 
-  p:nth-child(1) {
+  label:nth-child(1) {
     font-weight: 600;
     font-size: 1.3rem;
     margin-bottom: 0.5rem;

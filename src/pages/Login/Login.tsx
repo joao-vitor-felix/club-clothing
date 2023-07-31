@@ -13,12 +13,12 @@ const Login = () => {
           <Button icon={<BsGoogle size={22} />}>Entrar com o Google</Button>
           <S.Subtitle>Entre com o seu e-mail</S.Subtitle>
           <S.InputContainer>
-            <p>E-mail</p>
-            <Input placeholder="Digite seu e-mail" />
+            <label htmlFor="email">E-mail</label>
+            <Input placeholder="Digite seu e-mail" id="email" />
           </S.InputContainer>
           <S.InputContainer>
-            <p>Senha</p>
-            <Input placeholder="Digite sua senha" />
+            <label htmlFor="password">Senha</label>
+            <Input placeholder="Digite sua senha" id="password" />
           </S.InputContainer>
           <Button icon={<FiLogIn size={22} />}>Entrar</Button>
         </S.Content>
