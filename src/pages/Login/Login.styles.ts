@@ -29,6 +29,7 @@ export const Subtitle = styled.p`
   margin-top: 2rem;
   text-align: center;
   font-weight: 500;
+  font-size: 1.2rem;
   margin-bottom: 2rem;
 `;
 
@@ -38,6 +39,7 @@ export const InputContainer = styled.div`
 
   p:nth-child(1) {
     font-weight: 600;
+    font-size: 1.3rem;
     margin-bottom: 0.5rem;
   }
 `;
