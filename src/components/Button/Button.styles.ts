@@ -8,12 +8,9 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 1rem;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
   border: none;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
+  padding: 1rem 1.5rem;
   font-weight: 600;
   transition: all 0.5s ease;
   font-family: "Poppins", sans-serif;
