@@ -3,6 +3,7 @@ import { GlobalStyles } from "./GlobalStyles";
 import Theme from "./Theme";
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigation />}>
             <Route index element={<Home />} />
+            <Route path="shop" element={<Login />} />
           </Route>
         </Routes>
       </Theme>

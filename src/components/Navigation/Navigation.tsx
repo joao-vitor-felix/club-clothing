@@ -12,7 +12,7 @@ const Navigation = () => {
         </S.LogoContainer>
         <S.ItemWrapper>
           <S.Item to={"/"}>Explorar</S.Item>
-          <S.Item to={"/"}>Login</S.Item>
+          <S.Item to="/shop">Login</S.Item>
           <S.Item to={"/"}>Criar conta</S.Item>
           <S.Item to={"/"}>
             <BsCart3 size={22} />
