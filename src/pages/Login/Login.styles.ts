@@ -43,3 +43,10 @@ export const InputContainer = styled.div`
     margin-bottom: 0.5rem;
   }
 `;
+
+export const Error = styled.span`
+  display: block;
+  margin-top: 1rem;
+  color: ${({ theme }) => theme.input.error};
+  font-size: 1.3rem;
+`;
