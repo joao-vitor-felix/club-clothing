@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
+export const Button = styled.button`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.text.primary};
@@ -18,6 +18,10 @@ export const Container = styled.button`
   &:hover {
     cursor: pointer;
     background-color: #000000;
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 `;
 

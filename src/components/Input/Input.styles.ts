@@ -4,7 +4,7 @@ type CustomInputContainerProps = {
   hasError?: boolean;
 };
 
-export const Container = styled.input<CustomInputContainerProps>`
+export const Input = styled.input<CustomInputContainerProps>`
   border: none;
   width: 100%;
   background-color: ${({ theme }) => theme.input.background};

@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, FC, forwardRef } from "react";
+import { FC, forwardRef, InputHTMLAttributes } from "react";
 import * as S from "./Input.styles";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
@@ -6,7 +6,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 const Input: FC<InputProps> = forwardRef((props, ref) => {
-  return <S.Container {...props} ref={ref as any}></S.Container>;
+  return <S.Input {...props} ref={ref as any}></S.Input>;
 });
 
 Input.displayName = "Input";

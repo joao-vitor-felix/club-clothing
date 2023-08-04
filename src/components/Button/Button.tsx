@@ -1,9 +1,4 @@
-import {
-  FC,
-  ReactNode,
-  ButtonHTMLAttributes,
-  ComponentPropsWithoutRef
-} from "react";
+import { FC, ReactNode, ComponentPropsWithoutRef } from "react";
 import * as S from "./Button.styles";
 
 type ButtonProps = ComponentPropsWithoutRef<"button"> & {
@@ -13,10 +8,10 @@ type ButtonProps = ComponentPropsWithoutRef<"button"> & {
 
 const Button: FC<ButtonProps> = ({ children, icon, ...rest }) => {
   return (
-    <S.Container {...rest}>
+    <S.Button {...rest}>
       {icon && <S.Icon>{icon}</S.Icon>}
       {children}
-    </S.Container>
+    </S.Button>
   );
 };
 
