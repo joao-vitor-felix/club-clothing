@@ -11,10 +11,10 @@ const Navigation = () => {
           <S.Title>CLUB CLOTHING</S.Title>
         </S.LogoContainer>
         <S.ItemWrapper>
-          <S.Item to={"/"}>Explorar</S.Item>
-          <S.Item to="login">Login</S.Item>
-          <S.Item to={"/"}>Criar conta</S.Item>
-          <S.Item to={"/"}>
+          <S.Item to="/">Explorar</S.Item>
+          <S.Item to="sign-in">Entrar</S.Item>
+          <S.Item to="sign-up">Criar conta</S.Item>
+          <S.Item to="/">
             <BsCart3 size={22} />
           </S.Item>
         </S.ItemWrapper>
