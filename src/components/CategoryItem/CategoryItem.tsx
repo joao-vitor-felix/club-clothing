@@ -7,17 +7,13 @@ type CategoryItemProps = {
 };
 
 const CategoryItem: FC<CategoryItemProps> = ({ category }) => {
-  const capitalizeFirstLetter = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
   return (
     <S.Container
       to={"#"}
       style={{ backgroundImage: `url('${category.imageUrl}')` }}
     >
       <S.Name>
-        <p>{capitalizeFirstLetter(category.name)}</p>
+        <p>{category.displayName}</p>
         <p>Explorar</p>
       </S.Name>
     </S.Container>
