@@ -35,5 +35,10 @@ export const ItemWrapper = styled.div`
 
 export const Item = styled(Link)`
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  transition: all 0.5s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 `;

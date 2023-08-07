@@ -5,6 +5,9 @@ import { FiLogIn } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../../firebase/firebase.config";
 
 type FormData = {
   firstName: string;
@@ -47,8 +50,25 @@ const SignUp = () => {
     formState: { errors }
   } = useForm<FormData>({ resolver: yupResolver(schema) });
 
-  const getFormData = (data: FormData) => {
-    console.log({ data });
+  const getFormData = async (data: FormData) => {
+    console.log(data);
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      await addDoc(collection(db, "users"), {
+        id: userCredentials.user?.uid,
+        email: userCredentials.user?.email,
+        firstName: data.firstName,
+        lastName: data.lastName
+      });
+
+      console.log("Usuário criado com sucesso!");
+    } catch (error) {
+      console.log({ error });
+    }
   };
 
   console.log(errors);
