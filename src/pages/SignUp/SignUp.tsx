@@ -5,7 +5,11 @@ import { FiLogIn } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  AuthError,
+  AuthErrorCodes,
+  createUserWithEmailAndPassword
+} from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../firebase/firebase.config";
 
@@ -47,11 +51,11 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors }
   } = useForm<FormData>({ resolver: yupResolver(schema) });
 
   const getFormData = async (data: FormData) => {
-    console.log(data);
     try {
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
@@ -67,7 +71,14 @@ const SignUp = () => {
 
       console.log("Usuário criado com sucesso!");
     } catch (error) {
-      console.log({ error });
+      const _error = error as AuthError;
+
+      if (_error.code === AuthErrorCodes.EMAIL_EXISTS) {
+        return setError("email", {
+          type: "email-in-use",
+          message: "O e-mail informado já está em uso."
+        });
+      }
     }
   };
 
