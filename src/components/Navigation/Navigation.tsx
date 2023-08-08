@@ -1,8 +1,15 @@
 import { Outlet } from "react-router-dom";
 import * as S from "./Navigation.styles";
 import { BsCart3 } from "react-icons/bs";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase.config";
 
 const Navigation = () => {
+  const SignUserOut = async () => {
+    await signOut(auth);
+    console.log("User logged out");
+  };
+
   return (
     <>
       <S.Nav>
@@ -12,8 +19,15 @@ const Navigation = () => {
         </S.LogoContainer>
         <S.ItemWrapper>
           <S.Item to="/">Explorar</S.Item>
-          <S.Item to="sign-in">Entrar</S.Item>
           <S.Item to="sign-up">Criar conta</S.Item>
+          {auth.currentUser ? (
+            <S.Item to="#" onClick={SignUserOut}>
+              Sair
+            </S.Item>
+          ) : (
+            <S.Item to="sign-in">Entrar</S.Item>
+          )}
+
           <S.Item to="/">
             <BsCart3 size={22} />
           </S.Item>

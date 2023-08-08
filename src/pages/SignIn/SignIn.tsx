@@ -6,6 +6,14 @@ import { FiLogIn } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import {
+  AuthError,
+  AuthErrorCodes,
+  signInWithEmailAndPassword,
+  signInWithPopup
+} from "firebase/auth";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { auth, db, googleProvider } from "../../firebase/firebase.config";
 
 type FormData = {
   email: string;
@@ -28,19 +36,71 @@ const SignIn = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors }
   } = useForm<FormData>({ resolver: yupResolver(schema) });
 
-  const getFormData = (data: FormData) => {
-    console.log({ data });
+  const SignUserIn = async (data: FormData) => {
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+    } catch (error) {
+      const _error = error as AuthError;
+      console.log(error);
+
+      if (_error.code === AuthErrorCodes.INVALID_PASSWORD) {
+        return setError("password", {
+          type: "wrong-password",
+          message: "Senha incorreta."
+        });
+      }
+
+      if (_error.code === AuthErrorCodes.USER_DELETED) {
+        return setError("email", {
+          type: "user-not-found",
+          message:
+            "O usuário informado não está cadastrado. Crie uma conta para entrar."
+        });
+      }
+    }
   };
 
-  console.log({ errors });
+  const handleGoogleLogin = async () => {
+    try {
+      const userCredentials = await signInWithPopup(auth, googleProvider);
+
+      const querySnapshot = await getDocs(
+        query(
+          collection(db, "users"),
+          where("id", "==", userCredentials.user.uid)
+        )
+      );
+
+      const user = querySnapshot.docs[0]?.data();
+
+      if (!user) {
+        const firstName = userCredentials.user.displayName?.split(" ")[0];
+        const lastName = userCredentials.user.displayName?.split(" ")[1];
+
+        await addDoc(collection(db, "users"), {
+          id: userCredentials.user.uid,
+          email: userCredentials.user.email,
+          firstName,
+          lastName,
+          provider: "google"
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <S.Container>
       <S.Content>
         <S.Headline>Entre com sua conta</S.Headline>
-        <Button icon={<BsGoogle size={22} />}>Entrar com o Google</Button>
+        <Button icon={<BsGoogle size={22} />} onClick={handleGoogleLogin}>
+          Entrar com o Google
+        </Button>
         <S.Subtitle>Entre com o seu e-mail</S.Subtitle>
         <S.InputContainer>
           <label htmlFor="email">E-mail</label>
@@ -68,10 +128,7 @@ const SignIn = () => {
           )}
         </S.InputContainer>
 
-        <Button
-          icon={<FiLogIn size={22} />}
-          onClick={handleSubmit(getFormData)}
-        >
+        <Button icon={<FiLogIn size={22} />} onClick={handleSubmit(SignUserIn)}>
           Entrar
         </Button>
       </S.Content>
