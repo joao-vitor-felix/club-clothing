@@ -1,17 +1,18 @@
 import { Outlet } from "react-router-dom";
-import * as S from "./Navigation.styles";
-import { BsCart3 } from "react-icons/bs";
-import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
+import { signOut } from "firebase/auth";
+import { BsCart3 } from "react-icons/bs";
 import useUserContext from "../../hooks/useUserContext";
+import * as S from "./Navigation.styles";
 
 const Navigation = () => {
+  const { currentUser, logoutUser } = useUserContext();
+
   const SignUserOut = async () => {
     await signOut(auth);
+    logoutUser();
     console.log("User logged out");
   };
-
-  const { currentUser } = useUserContext();
 
   return (
     <>
