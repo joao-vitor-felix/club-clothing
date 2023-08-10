@@ -12,6 +12,9 @@ import {
 } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../firebase/firebase.config";
+import useUserContext from "../../hooks/useUserContext";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 type FormData = {
   firstName: string;
@@ -54,6 +57,15 @@ const SignUp = () => {
     setError,
     formState: { errors }
   } = useForm<FormData>({ resolver: yupResolver(schema) });
+
+  const { currentUser } = useUserContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser]);
 
   const getFormData = async (data: FormData) => {
     try {

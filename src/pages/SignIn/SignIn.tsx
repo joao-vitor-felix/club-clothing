@@ -14,6 +14,9 @@ import {
 } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { auth, db, googleProvider } from "../../firebase/firebase.config";
+import { useEffect } from "react";
+import useUserContext from "../../hooks/useUserContext";
+import { useNavigate } from "react-router-dom";
 
 type FormData = {
   email: string;
@@ -39,6 +42,15 @@ const SignIn = () => {
     setError,
     formState: { errors }
   } = useForm<FormData>({ resolver: yupResolver(schema) });
+
+  const { currentUser } = useUserContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser]);
 
   const SignUserIn = async (data: FormData) => {
     try {
