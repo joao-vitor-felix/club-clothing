@@ -1,35 +1,33 @@
 import { Route, Routes } from "react-router-dom";
 import { GlobalStyles } from "./GlobalStyles";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "./firebase/firebase.config";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { useEffect } from "react";
+import User from "./types/user.types";
+import useUserContext from "./hooks/useUserContext";
 import Theme from "./Theme";
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "./firebase/firebase.config";
-import useUserContext from "./hooks/useUserContext";
-import User from "./types/user.types";
-import { collection, getDocs, query, where } from "firebase/firestore";
 
 function App() {
-  const { currentUser, loginUser, logoutUser } = useUserContext();
+  const { loginUser } = useUserContext();
 
-  onAuthStateChanged(auth, async user => {
-    const isLoggedOut = currentUser && !user;
-    const isLoggedIn = !currentUser && user;
-    if (isLoggedOut) {
-      return logoutUser();
-    }
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async user => {
+      if (user) {
+        const querySnapshot = await getDocs(
+          query(collection(db, "users"), where("id", "==", user.uid))
+        );
+        const userFromFirestore = querySnapshot.docs[0]?.data();
+        return loginUser(userFromFirestore as User);
+      }
+    });
 
-    if (isLoggedIn) {
-      const querySnapshot = await getDocs(
-        query(collection(db, "users"), where("id", "==", user.uid))
-      );
-
-      const userFromFirestore = querySnapshot.docs[0]?.data();
-      return loginUser(userFromFirestore as User);
-    }
-  });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <Theme>
