@@ -19,10 +19,9 @@ const Categories = () => {
         categories.push(doc.data());
       });
 
-      console.log(categories);
       setCategories(categories);
     } catch (error) {
-      return error;
+      return console.log(error);
     }
   };
 
