@@ -17,6 +17,7 @@ import { auth, db, googleProvider } from "../../firebase/firebase.config";
 import { useEffect } from "react";
 import useUserContext from "../../hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 type FormData = {
   email: string;
@@ -36,6 +37,7 @@ const schema = yup.object({
 });
 
 const SignIn = () => {
+  useDocumentTitle("Entrar | Club Clothing");
   const {
     register,
     handleSubmit,
