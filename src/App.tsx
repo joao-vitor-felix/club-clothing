@@ -11,6 +11,7 @@ import Navigation from "./components/Navigation/Navigation";
 import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
+import { userConverter } from "./firebase/firestore.converters";
 
 function App() {
   const { loginUser } = useUserContext();
@@ -19,10 +20,13 @@ function App() {
     const unsubscribe = onAuthStateChanged(auth, async user => {
       if (user) {
         const querySnapshot = await getDocs(
-          query(collection(db, "users"), where("id", "==", user.uid))
+          query(
+            collection(db, "users").withConverter(userConverter),
+            where("id", "==", user.uid)
+          )
         );
         const userFromFirestore = querySnapshot.docs[0]?.data();
-        return loginUser(userFromFirestore as User);
+        return loginUser(userFromFirestore);
       }
     });
 
