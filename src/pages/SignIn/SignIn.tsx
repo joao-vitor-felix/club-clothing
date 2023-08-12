@@ -14,7 +14,7 @@ import {
 } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { auth, db, googleProvider } from "../../firebase/firebase.config";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useUserContext from "../../hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
@@ -44,6 +44,7 @@ const SignIn = () => {
     setError,
     formState: { errors }
   } = useForm<FormData>({ resolver: yupResolver(schema) });
+  const [isLoading, setIsLoading] = useState(false);
 
   const { currentUser } = useUserContext();
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ const SignIn = () => {
 
   const SignUserIn = async (data: FormData) => {
     try {
+      setIsLoading(true);
       await signInWithEmailAndPassword(auth, data.email, data.password);
     } catch (error) {
       const _error = error as AuthError;
@@ -75,11 +77,14 @@ const SignIn = () => {
             "O usuário informado não está cadastrado. Crie uma conta para entrar."
         });
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleGoogleLogin = async () => {
     try {
+      setIsLoading(true);
       const userCredentials = await signInWithPopup(auth, googleProvider);
 
       const querySnapshot = await getDocs(
@@ -105,6 +110,8 @@ const SignIn = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -112,7 +119,11 @@ const SignIn = () => {
     <S.Container>
       <S.Content>
         <S.Headline>Entre com sua conta</S.Headline>
-        <Button icon={<BsGoogle size={22} />} onClick={handleGoogleLogin}>
+        <Button
+          icon={<BsGoogle size={22} />}
+          onClick={handleGoogleLogin}
+          isLoading={isLoading}
+        >
           Entrar com o Google
         </Button>
         <S.Subtitle>Entre com o seu e-mail</S.Subtitle>
@@ -142,7 +153,11 @@ const SignIn = () => {
           )}
         </S.InputContainer>
 
-        <Button icon={<FiLogIn size={22} />} onClick={handleSubmit(SignUserIn)}>
+        <Button
+          icon={<FiLogIn size={22} />}
+          onClick={handleSubmit(SignUserIn)}
+          isLoading={isLoading}
+        >
           Entrar
         </Button>
       </S.Content>

@@ -14,7 +14,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../firebase/firebase.config";
 import useUserContext from "../../hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 type FormData = {
@@ -59,7 +59,7 @@ const SignUp = () => {
     setError,
     formState: { errors }
   } = useForm<FormData>({ resolver: yupResolver(schema) });
-
+  const [isLoading, setIsLoading] = useState(false);
   const { currentUser } = useUserContext();
   const navigate = useNavigate();
 
@@ -71,6 +71,7 @@ const SignUp = () => {
 
   const getFormData = async (data: FormData) => {
     try {
+      setIsLoading(true);
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
         data.email,
@@ -94,6 +95,8 @@ const SignUp = () => {
           message: "O e-mail informado já está em uso."
         });
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -169,6 +172,7 @@ const SignUp = () => {
         <Button
           icon={<FiLogIn size={22} />}
           onClick={handleSubmit(getFormData)}
+          isLoading={isLoading}
         >
           Criar conta
         </Button>
