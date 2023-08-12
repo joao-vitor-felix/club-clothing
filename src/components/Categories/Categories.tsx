@@ -1,29 +1,11 @@
-import * as S from "./Categories.styles";
-import Category from "../../types/categories.types";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import useCategoryContext from "../../hooks/useCategoryContext";
 import CategoryItem from "../CategoryItem/CategoryItem";
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "../../firebase/firebase.config";
-import { categoryConverter } from "../../firebase/firestore.converters";
+import * as S from "./Categories.styles";
+import Loading from "../Loading/Loading";
 
 const Categories = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-
-  const fetchCategories = async () => {
-    try {
-      const categories: Category[] = [];
-      const querySnapshot = await getDocs(
-        collection(db, "categories").withConverter(categoryConverter)
-      );
-      querySnapshot.forEach(doc => {
-        categories.push(doc.data());
-      });
-
-      setCategories(categories);
-    } catch (error) {
-      return console.log(error);
-    }
-  };
+  const { categories, isLoading, fetchCategories } = useCategoryContext();
 
   useEffect(() => {
     const fetchData = async () => await fetchCategories();
@@ -33,6 +15,7 @@ const Categories = () => {
 
   return (
     <S.Container>
+      {isLoading && <Loading />}
       <S.Content>
         {categories.map(category => (
           <div key={category.id}>
