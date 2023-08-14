@@ -4,14 +4,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase/firebase.config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect } from "react";
-import User from "./types/user.types";
 import useUserContext from "./hooks/useUserContext";
 import Theme from "./Theme";
+import { userConverter } from "./firebase/firestore.converters";
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
-import { userConverter } from "./firebase/firestore.converters";
+import Shop from "./pages/Shop/Shop";
 
 function App() {
   const { loginUser } = useUserContext();
@@ -39,6 +39,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route index element={<Home />} />
+          <Route path="shop" element={<Shop />} />
           <Route path="sign-in" element={<SignIn />} />
           <Route path="sign-up" element={<SignUp />} />
         </Route>
