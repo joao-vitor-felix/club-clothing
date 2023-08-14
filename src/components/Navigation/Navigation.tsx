@@ -22,7 +22,7 @@ const Navigation = () => {
           <S.Title>CLUB CLOTHING</S.Title>
         </S.LogoContainer>
         <S.ItemWrapper>
-          <S.Item to="/">Explorar</S.Item>
+          <S.Item to="shop">Explorar</S.Item>
           {currentUser ? (
             <S.Item to="#" onClick={SignUserOut}>
               Sair
