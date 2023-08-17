@@ -12,7 +12,6 @@ const CategoriesOverview = () => {
       fetchCategories();
     }
   }, []);
-
   if (isLoading) return <Loading />;
 
   return (

@@ -3,7 +3,6 @@ import Category from "../types/categories.types";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase.config";
 import { categoryConverter } from "../firebase/firestore.converters";
-import { set } from "firebase/database";
 
 type CategoryType = {
   categories: Category[];
@@ -31,7 +30,6 @@ const CategoryContextProvider = ({ children }: PropsWithChildren) => {
       querySnapshot.forEach(doc => {
         categories.push(doc.data());
       });
-      console.log(categories);
       setCategories(categories);
     } catch (error) {
       return console.log(error);
