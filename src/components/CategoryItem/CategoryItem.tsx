@@ -9,7 +9,7 @@ type CategoryItemProps = {
 const CategoryItem: FC<CategoryItemProps> = ({ category }) => {
   return (
     <S.Container
-      to={"#"}
+      to={`shop/category/${category.id}`}
       style={{ backgroundImage: `url('${category.imageUrl}')` }}
     >
       <S.Name>

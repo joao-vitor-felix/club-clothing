@@ -10,7 +10,7 @@ type CategoryOverviewProps = {
 const CategoryOverview: FC<CategoryOverviewProps> = ({ category }) => {
   return (
     <S.Container>
-      <S.Title>{category.displayName}</S.Title>
+      <S.Title to={`category/${category.id}`}>{category.displayName}</S.Title>
       <S.ProductsContainer>
         {category.products.slice(0, 4).map(product => (
           <ProductItem key={product.id} product={product} />

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -7,7 +8,9 @@ export const Container = styled.div`
   margin-top: 2rem;
 `;
 
-export const Title = styled.p`
+export const Title = styled(Link)`
+  width: max-content;
+  color: ${({ theme }) => theme.text.secondary};
   font-size: 2.2rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
