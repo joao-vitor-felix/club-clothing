@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import CategoriesOverview from "../../components/CategoriesOverview/CategoriesOverview";
+import CategoriesOverview from "../../components/CategoriesPreview/CategoriesPreview";
 import Category from "../Category/Category";
 const Shop = () => {
   return (

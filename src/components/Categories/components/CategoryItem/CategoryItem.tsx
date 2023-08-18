@@ -1,6 +1,6 @@
 import { FC } from "react";
 import * as S from "./CategoryItem.styles";
-import Category from "../../types/categories.types";
+import Category from "../../../../types/categories.types";
 
 type CategoryItemProps = {
   category: Category;

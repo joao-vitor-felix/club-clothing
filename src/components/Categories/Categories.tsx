@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useCategoryContext from "../../hooks/useCategoryContext";
-import CategoryItem from "../CategoryItem/CategoryItem";
 import * as S from "./Categories.styles";
+import CategoryItem from "./components/CategoryItem/CategoryItem";
 import Loading from "../Loading/Loading";
 
 const Categories = () => {

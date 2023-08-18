@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import * as S from "./CategoriesOverview.styles";
+import * as S from "./CategoriesPreview.styles";
 import useCategoryContext from "../../hooks/useCategoryContext";
 import Loading from "../Loading/Loading";
-import CategoryOverview from "../CategoryOverview/CategoryOverview";
+import CategoryPreview from "./components/CategoryPreview/CategoryPreview";
 
-const CategoriesOverview = () => {
+const CategoriesPreview = () => {
   const { categories, isLoading, fetchCategories } = useCategoryContext();
 
   useEffect(() => {
@@ -17,10 +17,10 @@ const CategoriesOverview = () => {
   return (
     <S.Container>
       {categories.map(category => (
-        <CategoryOverview key={category.id} category={category} />
+        <CategoryPreview key={category.id} category={category} />
       ))}
     </S.Container>
   );
 };
 
-export default CategoriesOverview;
+export default CategoriesPreview;

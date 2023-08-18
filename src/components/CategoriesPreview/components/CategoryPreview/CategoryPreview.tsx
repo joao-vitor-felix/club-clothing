@@ -1,13 +1,13 @@
 import { FC } from "react";
-import Category from "../../types/categories.types";
-import * as S from "./CategoryOverview.styles";
-import ProductItem from "../ProductItem/ProductItem";
+import * as S from "./CategoryPreview.styles";
+import Category from "../../../../types/categories.types";
+import ProductItem from "../../../ProductItem/ProductItem";
 
-type CategoryOverviewProps = {
+type CategoryPreviewProps = {
   category: Category;
 };
 
-const CategoryOverview: FC<CategoryOverviewProps> = ({ category }) => {
+const CategoryPreview: FC<CategoryPreviewProps> = ({ category }) => {
   return (
     <S.Container>
       <S.Title to={`category/${category.id}`}>{category.displayName}</S.Title>
@@ -20,4 +20,4 @@ const CategoryOverview: FC<CategoryOverviewProps> = ({ category }) => {
   );
 };
 
-export default CategoryOverview;
+export default CategoryPreview;
