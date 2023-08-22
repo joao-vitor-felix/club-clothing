@@ -1,5 +1,4 @@
 import { BsCartPlus } from "react-icons/bs";
-import Button from "../Button/Button";
 import * as S from "./Cart.styles";
 import useCartContext from "../../hooks/useCartContext";
 import { useEffect, useRef } from "react";
@@ -30,7 +29,9 @@ const Cart = () => {
           ))}
         </S.ItemContainer>
         <S.Total>Total: R$ {sumCartTotal()}</S.Total>
-        <Button icon={<BsCartPlus size={23} />}>Finalizar compra</Button>
+        <S.PayButton icon={<BsCartPlus size={23} />}>
+          Finalizar compra
+        </S.PayButton>
       </S.SideBar>
     </S.Background>
   );

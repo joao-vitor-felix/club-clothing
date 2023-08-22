@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "../Button/Button";
 
 export const Background = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
@@ -36,4 +37,8 @@ export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+`;
+
+export const PayButton = styled(Button)`
+  margin-bottom: 5rem;
 `;
