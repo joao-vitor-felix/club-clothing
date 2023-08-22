@@ -10,6 +10,8 @@ export const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
   padding: 3rem;
+  position: sticky;
+  top: 0;
 `;
 
 export const LogoContainer = styled(Link)`
@@ -36,6 +38,9 @@ export const ItemWrapper = styled.div`
 export const Item = styled(Link)`
   font-weight: 600;
   font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
   transition: all 0.5s ease;
   color: ${({ theme }) => theme.text.primary};
 

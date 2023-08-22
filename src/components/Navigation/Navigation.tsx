@@ -4,9 +4,12 @@ import { signOut } from "firebase/auth";
 import { BsCart3 } from "react-icons/bs";
 import useUserContext from "../../hooks/useUserContext";
 import * as S from "./Navigation.styles";
+import useCartContext from "../../hooks/useCartContext";
+import Cart from "../Cart/Cart";
 
 const Navigation = () => {
   const { currentUser, logoutUser } = useUserContext();
+  const { toggleCart, isCartOpen, sumTotalQuantity } = useCartContext();
 
   const SignUserOut = async () => {
     await signOut(auth);
@@ -17,7 +20,7 @@ const Navigation = () => {
   return (
     <>
       <S.Nav>
-        <S.LogoContainer to={"/"}>
+        <S.LogoContainer to="/">
           <S.Logo />
           <S.Title>CLUB CLOTHING</S.Title>
         </S.LogoContainer>
@@ -34,10 +37,12 @@ const Navigation = () => {
             </>
           )}
 
-          <S.Item to="/">
+          <S.Item to="#" onClick={toggleCart}>
             <BsCart3 size={22} />
+            {sumTotalQuantity()}
           </S.Item>
         </S.ItemWrapper>
+        {isCartOpen && <Cart />}
       </S.Nav>
       <Outlet />
     </>
