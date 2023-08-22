@@ -6,7 +6,7 @@ type CartContextType = {
   cart: Cart[];
   addToCart: (product: Product, cart: Cart[]) => void;
   removeFromCart: (product: Product, cart: Cart[]) => void;
-  clearCart: () => void;
+  clearFromCart: (product: Cart, cart: Cart[]) => void;
   sumCartTotal: () => number;
   sumTotalQuantity: () => number;
   toggleCart: () => void;
@@ -17,7 +17,7 @@ export const CartContext = createContext<CartContextType>({
   cart: [],
   addToCart: () => null,
   removeFromCart: () => null,
-  clearCart: () => null,
+  clearFromCart: () => null,
   sumCartTotal: () => 0,
   sumTotalQuantity: () => 0,
   toggleCart: () => null,
@@ -45,7 +45,7 @@ const CartContextProvider = ({ children }: PropsWithChildren) => {
 
   const removeFromCart = (product: Product, cart: Cart[]) => {
     const isOnCart = cart.find(item => item.id === product.id);
-    const productQuantity = isOnCart && isOnCart?.quantity < 1;
+    const productQuantity = isOnCart && isOnCart?.quantity === 1;
 
     if (productQuantity) {
       return setCart(cart.filter(item => item.id !== product.id));
@@ -62,7 +62,8 @@ const CartContextProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  const clearCart = () => setCart([]);
+  const clearFromCart = (product: Cart, cart: Cart[]) =>
+    setCart(cart.filter(item => item.id !== product.id));
 
   const sumCartTotal = () => {
     return cart.reduce(
@@ -81,7 +82,7 @@ const CartContextProvider = ({ children }: PropsWithChildren) => {
     cart,
     addToCart,
     removeFromCart,
-    clearCart,
+    clearFromCart,
     sumCartTotal,
     sumTotalQuantity,
     toggleCart,
