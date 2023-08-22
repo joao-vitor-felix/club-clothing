@@ -7,13 +7,14 @@ type CategoryItemProps = {
 };
 
 const CategoryItem: FC<CategoryItemProps> = ({ category }) => {
+  const { displayName, imageUrl, id } = category;
   return (
     <S.Container
-      to={`shop/category/${category.id}`}
-      style={{ backgroundImage: `url('${category.imageUrl}')` }}
+      to={`shop/category/${id}`}
+      style={{ backgroundImage: `url('${imageUrl}')` }}
     >
       <S.Name>
-        <p>{category.displayName}</p>
+        <p>{displayName}</p>
         <p>Explorar</p>
       </S.Name>
     </S.Container>
