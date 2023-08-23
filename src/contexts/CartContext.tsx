@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useState } from "react";
+import { PropsWithChildren, createContext, useEffect, useState } from "react";
 import Cart from "../types/cart.type";
 import Product from "../types/product.types";
 
@@ -27,6 +27,19 @@ export const CartContext = createContext<CartContextType>({
 const CartContextProvider = ({ children }: PropsWithChildren) => {
   const [cart, setCart] = useState<Cart[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  useEffect(() => {
+    const localCart = localStorage.getItem("cart");
+    if (localCart) {
+      setCart(JSON.parse(localCart) as Cart[]);
+    }
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }, 0);
+  }, [cart]);
 
   const addToCart = (product: Product, cart: Cart[]) => {
     const isOnCart = cart.find(item => item.id === product.id);
