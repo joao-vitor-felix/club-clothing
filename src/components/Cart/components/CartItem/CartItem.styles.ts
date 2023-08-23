@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 50%;
+  width: 20rem;
   height: 100%;
   object-fit: cover;
   border-radius: 2rem;
@@ -19,6 +19,7 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 `;
 
 export const ButtonContainer = styled.div`
