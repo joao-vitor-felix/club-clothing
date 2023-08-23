@@ -12,6 +12,7 @@ import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Shop from "./pages/Shop/Shop";
+import Checkout from "./pages/Checkout/Checkout";
 
 function App() {
   const { loginUser } = useUserContext();
@@ -40,6 +41,7 @@ function App() {
         <Route path="/" element={<Navigation />}>
           <Route index element={<Home />} />
           <Route path="shop/*" element={<Shop />} />
+          <Route path="checkout" element={<Checkout />} />
           <Route path="sign-in" element={<SignIn />} />
           <Route path="sign-up" element={<SignUp />} />
         </Route>

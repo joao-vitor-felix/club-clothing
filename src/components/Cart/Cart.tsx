@@ -3,10 +3,12 @@ import * as S from "./Cart.styles";
 import useCartContext from "../../hooks/useCartContext";
 import { useEffect, useRef } from "react";
 import CartItem from "./components/CartItem/CartItem";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cart, sumCartTotal, toggleCart } = useCartContext();
   const divRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const handleClickOutside = (e: MouseEvent) => {
     if (divRef.current && !divRef.current.contains(e.target as Node)) {
@@ -29,8 +31,11 @@ const Cart = () => {
           ))}
         </S.ItemContainer>
         <S.Total>Total: R$ {sumCartTotal()}</S.Total>
-        <S.PayButton icon={<BsCartPlus size={23} />}>
-          Finalizar compra
+        <S.PayButton
+          icon={<BsCartPlus size={23} />}
+          onClick={() => navigate("checkout")}
+        >
+          Prosseguir com o pagamento
         </S.PayButton>
       </S.SideBar>
     </S.Background>
