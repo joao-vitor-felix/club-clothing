@@ -1,4 +1,10 @@
-import { PropsWithChildren, createContext, useEffect, useState } from "react";
+import {
+  PropsWithChildren,
+  createContext,
+  useEffect,
+  useMemo,
+  useState
+} from "react";
 import Cart from "../types/cart.type";
 import Product from "../types/product.types";
 
@@ -7,8 +13,8 @@ type CartContextType = {
   addToCart: (product: Product, cart: Cart[]) => void;
   removeFromCart: (product: Product, cart: Cart[]) => void;
   clearFromCart: (product: Cart, cart: Cart[]) => void;
-  sumCartTotal: () => number;
-  sumTotalQuantity: () => number;
+  sumCartTotal: number;
+  sumTotalQuantity: number;
   toggleCart: () => void;
   isCartOpen: boolean;
 };
@@ -18,8 +24,8 @@ export const CartContext = createContext<CartContextType>({
   addToCart: () => null,
   removeFromCart: () => null,
   clearFromCart: () => null,
-  sumCartTotal: () => 0,
-  sumTotalQuantity: () => 0,
+  sumCartTotal: 0,
+  sumTotalQuantity: 0,
   toggleCart: () => null,
   isCartOpen: false
 });
@@ -78,16 +84,16 @@ const CartContextProvider = ({ children }: PropsWithChildren) => {
   const clearFromCart = (product: Cart, cart: Cart[]) =>
     setCart(cart.filter(item => item.id !== product.id));
 
-  const sumCartTotal = () => {
+  const sumCartTotal = useMemo(() => {
     return cart.reduce(
       (acc, current) => acc + current.price * current.quantity,
       0
     );
-  };
+  }, [cart]);
 
-  const sumTotalQuantity = () => {
+  const sumTotalQuantity = useMemo(() => {
     return cart.reduce((acc, current) => acc + current.quantity, 0);
-  };
+  }, [cart]);
 
   const toggleCart = () => setIsCartOpen(!isCartOpen);
 
