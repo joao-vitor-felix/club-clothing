@@ -13,3 +13,8 @@ export const Text = styled.h2`
   font-size: 2.5rem;
   margin-bottom: 1rem;
 `;
+
+export const Empty = styled.span`
+  font-size: 1.8rem;
+  font-weight: 500;
+`;

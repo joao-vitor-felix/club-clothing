@@ -9,10 +9,16 @@ const Checkout = () => {
   return (
     <S.Container>
       <S.Text>Checkout</S.Text>
-      {cart.map(item => (
-        <CheckoutItem product={item} key={item.id} />
-      ))}
-      <Button icon={<BsCartPlus size={23} />}>Finalizar compra</Button>
+      {cart.length > 0 ? (
+        <>
+          {cart.map(item => (
+            <CheckoutItem product={item} key={item.id} />
+          ))}
+          <Button icon={<BsCartPlus size={23} />}>Finalizar compra</Button>
+        </>
+      ) : (
+        <S.Empty>Seu carrinho está vazio :( </S.Empty>
+      )}
     </S.Container>
   );
 };
