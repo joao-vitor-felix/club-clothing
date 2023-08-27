@@ -10,7 +10,7 @@ export const CartButton = styled(Button)`
   visibility: hidden;
   opacity: 0;
   margin: 0 auto;
-  margin-top: 32rem;
+  margin: 2rem;
 `;
 
 export const Image = styled.div<ProductImageProps>`
@@ -22,6 +22,8 @@ export const Image = styled.div<ProductImageProps>`
   background-position: center;
   border-radius: 10px;
   box-shadow: 0px 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: flex-end;
   transition: all 0.3s ease;
 `;
 
