@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import CategoriesOverview from "../../components/CategoriesPreview/CategoriesPreview";
 import Category from "../Category/Category";
+import CategoriesPreview from "../../components/CategoriesPreview/CategoriesPreview";
 const Shop = () => {
   return (
     <Routes>
-      <Route index element={<CategoriesOverview />} />
+      <Route index element={<CategoriesPreview />} />
       <Route path="category/:id" element={<Category />} />
     </Routes>
   );
