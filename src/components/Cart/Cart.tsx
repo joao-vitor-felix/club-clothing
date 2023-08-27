@@ -6,23 +6,32 @@ import CartItem from "./components/CartItem/CartItem";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, sumCartTotal, toggleCart } = useCartContext();
+  const { cart, sumCartTotal, toggleCart, isCartOpen } = useCartContext();
   const divRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  const handleClickOutside = (e: MouseEvent) => {
-    if (divRef.current && !divRef.current.contains(e.target as Node)) {
-      toggleCart();
-    }
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (isCartOpen && e.key === "Escape") {
+        toggleCart();
+      }
+    };
+
+    addEventListener("keydown", handleEscape);
+
+    return () => {
+      removeEventListener("keydown", handleEscape);
+    };
+  }, [isCartOpen]);
+
+  const goToCheckout = () => {
+    toggleCart();
+    navigate("checkout");
   };
 
-  useEffect(() => {
-    addEventListener("mousedown", handleClickOutside);
-    return () => removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   return (
-    <S.Background>
+    <S.Background isCartOpen={isCartOpen}>
+      <S.EscapeArea onClick={toggleCart} />
       <S.SideBar ref={divRef}>
         <S.Title>Seu carrinho</S.Title>
         <S.ItemContainer>
@@ -30,13 +39,13 @@ const Cart = () => {
             <CartItem product={product} key={product.id} />
           ))}
         </S.ItemContainer>
-        <S.Total>Total: R$ {sumCartTotal()}</S.Total>
-        <S.PayButton
-          icon={<BsCartPlus size={23} />}
-          onClick={() => navigate("checkout")}
-        >
-          Prosseguir com o pagamento
-        </S.PayButton>
+        {sumCartTotal > 0 && <S.Total>Total: R$ {sumCartTotal}</S.Total>}
+        {sumCartTotal > 0 && (
+          <S.PayButton icon={<BsCartPlus size={23} />} onClick={goToCheckout}>
+            Prosseguir com o pagamento
+          </S.PayButton>
+        )}
+        {sumCartTotal === 0 && <S.Empty>Seu carrinho está vazio :(</S.Empty>}
       </S.SideBar>
     </S.Background>
   );

@@ -1,8 +1,6 @@
-type Cart = {
-  id: string;
-  imageUrl: string;
-  name: string;
-  price: number;
+import Product from "./product.types";
+
+type Cart = Product & {
   quantity: number;
 };
 

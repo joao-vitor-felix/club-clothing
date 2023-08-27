@@ -9,7 +9,7 @@ import Cart from "../Cart/Cart";
 
 const Navigation = () => {
   const { currentUser, logoutUser } = useUserContext();
-  const { toggleCart, isCartOpen, sumTotalQuantity } = useCartContext();
+  const { toggleCart, sumTotalQuantity } = useCartContext();
 
   const SignUserOut = async () => {
     await signOut(auth);
@@ -39,10 +39,10 @@ const Navigation = () => {
 
           <S.Item to="#" onClick={toggleCart}>
             <BsCart3 size={22} />
-            {sumTotalQuantity()}
+            {sumTotalQuantity}
           </S.Item>
         </S.ItemWrapper>
-        {isCartOpen && <Cart />}
+        <Cart />
       </S.Nav>
       <Outlet />
     </>

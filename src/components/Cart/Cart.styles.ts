@@ -1,13 +1,25 @@
 import styled from "styled-components";
 import Button from "../Button/Button";
 
-export const Background = styled.div`
+type BackgroundProps = {
+  isCartOpen: boolean;
+};
+
+export const Background = styled.div<BackgroundProps>`
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  visibility: ${({ isCartOpen }) => (isCartOpen ? "visible" : "hidden")};
+  opacity: ${({ isCartOpen }) => (isCartOpen ? "1" : "0")};
+  transition: all 0.5s ease;
+`;
+
+export const EscapeArea = styled.div`
+  width: 75%;
+  height: 100%;
 `;
 
 export const SideBar = styled.div`
@@ -15,12 +27,11 @@ export const SideBar = styled.div`
   flex-direction: column;
   gap: 2rem;
   background-color: white;
-  width: 50rem;
+  width: 25%;
   height: 100vh;
   position: fixed;
   top: 6rem;
   right: 0;
-  z-index: 10;
   padding: 2rem;
   overflow: scroll;
 `;
@@ -41,4 +52,9 @@ export const ItemContainer = styled.div`
 
 export const PayButton = styled(Button)`
   margin-bottom: 5rem;
+`;
+
+export const Empty = styled.span`
+  font-size: 1.8rem;
+  font-weight: 500;
 `;
