@@ -15,7 +15,7 @@ const Categories = () => {
 
   return (
     <S.Container>
-      {isLoading && <Loading />}
+      {isLoading && categories.length === 0 && <Loading />}
       <S.Content>
         {categories.map(category => (
           <div key={category.id}>
