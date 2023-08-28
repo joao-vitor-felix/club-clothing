@@ -1,11 +1,10 @@
 import { FC, PropsWithChildren, useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loading from "../Loading/Loading";
 
 const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
-  const navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -38,11 +37,9 @@ const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
       progress: undefined,
       theme: "dark"
     });
-    navigate("/sign-in");
-    return null;
   }
 
-  return children;
+  return currentUser ? children : <Navigate to="/sign-in" />;
 };
 
 export default ProtectedRoute;
