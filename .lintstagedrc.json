@@ -1,4 +1,4 @@
 {
-    "*.ts": ["eslint --ext .ts --fix"],
-    "*.tsx": ["eslint --ext .tsx --fix"]
+    "*.ts": ["eslint --ext .ts --fix", "npx prettier --write"],
+    "*.tsx": ["eslint --ext .tsx --fix", "npx prettier --write"]
 }
