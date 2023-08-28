@@ -10,24 +10,26 @@ import Product from "../types/product.types";
 
 type CartContextType = {
   cart: Cart[];
+  sumCartTotal: number;
+  sumTotalQuantity: number;
+  isCartOpen: boolean;
   addToCart: (product: Product, cart: Cart[]) => void;
   removeFromCart: (product: Product, cart: Cart[]) => void;
   clearFromCart: (product: Cart, cart: Cart[]) => void;
-  sumCartTotal: number;
-  sumTotalQuantity: number;
+  clearCart: () => void;
   toggleCart: () => void;
-  isCartOpen: boolean;
 };
 
 export const CartContext = createContext<CartContextType>({
   cart: [],
+  sumCartTotal: 0,
+  sumTotalQuantity: 0,
+  isCartOpen: false,
+  clearCart: () => null,
   addToCart: () => null,
   removeFromCart: () => null,
   clearFromCart: () => null,
-  sumCartTotal: 0,
-  sumTotalQuantity: 0,
-  toggleCart: () => null,
-  isCartOpen: false
+  toggleCart: () => null
 });
 
 const CartContextProvider = ({ children }: PropsWithChildren) => {
@@ -84,6 +86,8 @@ const CartContextProvider = ({ children }: PropsWithChildren) => {
   const clearFromCart = (product: Cart, cart: Cart[]) =>
     setCart(cart.filter(item => item.id !== product.id));
 
+  const clearCart = () => setCart([]);
+
   const sumCartTotal = useMemo(() => {
     return cart.reduce(
       (acc, current) => acc + current.price * current.quantity,
@@ -102,6 +106,7 @@ const CartContextProvider = ({ children }: PropsWithChildren) => {
     addToCart,
     removeFromCart,
     clearFromCart,
+    clearCart,
     sumCartTotal,
     sumTotalQuantity,
     toggleCart,

@@ -1,13 +1,13 @@
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { GlobalStyles } from "./GlobalStyles";
 import { ToastContainer } from "react-toastify";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase/firebase.config";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { useEffect } from "react";
+import { userConverter } from "./firebase/firestore.converters";
 import useUserContext from "./hooks/useUserContext";
 import Theme from "./Theme";
-import { userConverter } from "./firebase/firestore.converters";
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
@@ -15,6 +15,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Shop from "./pages/Shop/Shop";
 import Checkout from "./pages/Checkout/Checkout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import PaymentConfirmation from "./pages/PaymentConfirmation/PaymentConfirmation";
 
 function App() {
   const { loginUser } = useUserContext();
@@ -54,6 +55,10 @@ function App() {
           />
           <Route path="sign-in" element={<SignIn />} />
           <Route path="sign-up" element={<SignUp />} />
+          <Route
+            path="payment-confirmation"
+            element={<PaymentConfirmation />}
+          />
         </Route>
       </Routes>
     </Theme>
