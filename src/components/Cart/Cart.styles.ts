@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Button from "../Button/Button";
 
 type BackgroundProps = {
-  isCartOpen: boolean;
+  $isCartOpen: boolean;
 };
 
 export const Background = styled.div<BackgroundProps>`
@@ -12,8 +12,8 @@ export const Background = styled.div<BackgroundProps>`
   position: fixed;
   top: 0;
   left: 0;
-  visibility: ${({ isCartOpen }) => (isCartOpen ? "visible" : "hidden")};
-  opacity: ${({ isCartOpen }) => (isCartOpen ? "1" : "0")};
+  visibility: ${({ $isCartOpen }) => ($isCartOpen ? "visible" : "hidden")};
+  opacity: ${({ $isCartOpen }) => ($isCartOpen ? "1" : "0")};
   transition: all 0.5s ease;
 `;
 

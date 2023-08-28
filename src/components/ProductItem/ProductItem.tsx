@@ -13,7 +13,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
   const { imageUrl, name, price } = product;
   return (
     <S.Container>
-      <S.Image imageUrl={imageUrl}>
+      <S.Image $imageUrl={imageUrl}>
         <S.CartButton onClick={() => addToCart(product, cart)}>
           <BsCartPlus size={23} /> Adicionar ao carrinho
         </S.CartButton>

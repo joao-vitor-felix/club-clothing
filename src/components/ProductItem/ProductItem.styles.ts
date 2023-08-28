@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button } from "../Button/Button.styles";
 
 type ProductImageProps = {
-  imageUrl: string;
+  $imageUrl: string;
 };
 
 export const CartButton = styled(Button)`
@@ -14,7 +14,7 @@ export const CartButton = styled(Button)`
 `;
 
 export const Image = styled.div<ProductImageProps>`
-  background-image: ${props => `url('${props.imageUrl}')`};
+  background-image: ${props => `url('${props.$imageUrl}')`};
   height: 38rem;
   width: 30rem;
   background-size: cover;

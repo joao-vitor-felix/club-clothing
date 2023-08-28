@@ -109,7 +109,7 @@ const SignUp = () => {
           <Input
             placeholder="Informe seu nome"
             id="firstName"
-            hasError={!!errors?.firstName}
+            $hasError={!!errors?.firstName}
             {...register("firstName")}
           />
           {errors?.firstName?.message && (
@@ -121,7 +121,7 @@ const SignUp = () => {
           <label htmlFor="lastName">Sobrenome</label>
           <Input
             placeholder="Informe seu sobrenome"
-            hasError={!!errors?.lastName}
+            $hasError={!!errors?.lastName}
             id="lastName"
             {...register("lastName")}
           />
@@ -135,7 +135,7 @@ const SignUp = () => {
           <Input
             placeholder="Informe seu melhor e-mail"
             id="email"
-            hasError={!!errors?.email}
+            $hasError={!!errors?.email}
             {...register("email")}
           />
           {errors?.email?.message && <S.Error>{errors.email.message}</S.Error>}
@@ -146,7 +146,7 @@ const SignUp = () => {
           <Input
             type="password"
             placeholder="Informe sua senha"
-            hasError={!!errors?.password}
+            $hasError={!!errors?.password}
             id="password"
             {...register("password")}
           />
@@ -161,7 +161,7 @@ const SignUp = () => {
             type="password"
             placeholder="Confirme sua senha"
             id="confirmPassword"
-            hasError={!!errors?.confirmPassword}
+            $hasError={!!errors?.confirmPassword}
             {...register("confirmPassword")}
           />
           {errors?.confirmPassword?.message && (

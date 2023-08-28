@@ -2,7 +2,7 @@ import { FC, forwardRef, InputHTMLAttributes } from "react";
 import * as S from "./Input.styles";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  hasError?: boolean;
+  $hasError?: boolean;
 };
 
 const Input: FC<InputProps> = forwardRef((props, ref) => {

@@ -30,7 +30,7 @@ const Cart = () => {
   };
 
   return (
-    <S.Background isCartOpen={isCartOpen}>
+    <S.Background $isCartOpen={isCartOpen}>
       <S.EscapeArea onClick={toggleCart} />
       <S.SideBar ref={divRef}>
         <S.Title>Seu carrinho</S.Title>

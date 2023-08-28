@@ -133,7 +133,7 @@ const SignIn = () => {
             placeholder="Digite seu e-mail"
             id="email"
             type="email"
-            hasError={!!errors?.email}
+            $hasError={!!errors?.email}
             {...register("email")}
           />
           {errors?.email?.message && <S.Error>{errors.email.message}</S.Error>}
@@ -145,7 +145,7 @@ const SignIn = () => {
             placeholder="Digite sua senha"
             id="password"
             type="password"
-            hasError={!!errors?.password}
+            $hasError={!!errors?.password}
             {...register("password")}
           />
           {errors?.password?.message && (
