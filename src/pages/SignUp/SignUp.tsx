@@ -1,10 +1,11 @@
+import { useEffect, useState } from "react";
 import * as S from "../SignIn/SignIn.styles";
+import * as yup from "yup";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { FiLogIn } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import {
   AuthError,
   AuthErrorCodes,
@@ -12,9 +13,8 @@ import {
 } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../firebase/firebase.config";
-import useUserContext from "../../hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useUserReducer } from "../../hooks/useUserReducer";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 type FormData = {
@@ -59,8 +59,9 @@ const SignUp = () => {
     setError,
     formState: { errors }
   } = useForm<FormData>({ resolver: yupResolver(schema) });
+
   const [isLoading, setIsLoading] = useState(false);
-  const { currentUser } = useUserContext();
+  const { currentUser } = useUserReducer();
   const navigate = useNavigate();
 
   useEffect(() => {

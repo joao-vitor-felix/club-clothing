@@ -2,19 +2,22 @@ import { Outlet } from "react-router-dom";
 import { auth } from "../../firebase/firebase.config";
 import { signOut } from "firebase/auth";
 import { BsCart3 } from "react-icons/bs";
-import useUserContext from "../../hooks/useUserContext";
 import * as S from "./Navigation.styles";
 import useCartContext from "../../hooks/useCartContext";
 import Cart from "../Cart/Cart";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../store/user/user.actions";
+import { useUserReducer } from "../../hooks/useUserReducer";
 
 const Navigation = () => {
-  const { currentUser, logoutUser } = useUserContext();
+  const { currentUser } = useUserReducer();
+
+  const dispatch = useDispatch();
   const { toggleCart, sumTotalQuantity } = useCartContext();
 
   const SignUserOut = async () => {
     await signOut(auth);
-    logoutUser();
-    console.log("User logged out");
+    dispatch(logoutUser());
   };
 
   return (
