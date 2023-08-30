@@ -6,7 +6,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase/firebase.config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { userConverter } from "./firebase/firestore.converters";
-import useUserContext from "./hooks/useUserContext";
+import { useDispatch } from "react-redux";
+import { loginUser } from "./store/user/user.actions";
 import Theme from "./Theme";
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./pages/Home/Home";
@@ -18,7 +19,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import PaymentConfirmation from "./pages/PaymentConfirmation/PaymentConfirmation";
 
 function App() {
-  const { loginUser } = useUserContext();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async user => {
@@ -30,7 +31,7 @@ function App() {
           )
         );
         const userFromFirestore = querySnapshot.docs[0]?.data();
-        return loginUser(userFromFirestore);
+        return dispatch(loginUser(userFromFirestore));
       }
     });
 
