@@ -6,12 +6,12 @@ type UserReducer = {
   currentUser: User | null;
 };
 
-const initialState: UserReducer = {
+const INITIAL_STATE: UserReducer = {
   currentUser: null
 };
 
 export const userReducer = (
-  state = initialState,
+  state = INITIAL_STATE,
   action: UserActionTypes
 ): UserReducer => {
   switch (action.type) {
