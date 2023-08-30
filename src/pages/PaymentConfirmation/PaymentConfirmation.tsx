@@ -1,3 +1,4 @@
+import * as S from "./PaymentConfirmation.styles";
 import { FC, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
@@ -5,22 +6,21 @@ import {
   AiOutlineCloseCircle,
   AiOutlineHome
 } from "react-icons/ai";
-import useCartContext from "../../hooks/useCartContext";
-import * as S from "./PaymentConfirmation.styles";
 import Button from "../../components/Button/Button";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../store/cart/cart.actions";
 
 const PaymentConfirmation: FC = () => {
-  const { clearCart } = useCartContext();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const status = searchParams.get("success");
   const isCanceled = searchParams.get("canceled") === "true";
 
   useEffect(() => {
     setTimeout(() => {
       if (status === "true") {
-        clearCart();
+        dispatch(clearCart());
       }
     }, 0);
   }, [status]);

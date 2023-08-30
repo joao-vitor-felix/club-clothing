@@ -3,21 +3,27 @@ import { auth } from "../../firebase/firebase.config";
 import { signOut } from "firebase/auth";
 import { BsCart3 } from "react-icons/bs";
 import * as S from "./Navigation.styles";
-import useCartContext from "../../hooks/useCartContext";
 import Cart from "../Cart/Cart";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../store/user/user.actions";
 import { useUserReducer } from "../../hooks/useUserReducer";
+import { toggleCart } from "../../store/cart/cart.actions";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import { selectCartQuantity } from "../../store/cart/cart.selectors";
 
 const Navigation = () => {
   const { currentUser } = useUserReducer();
 
   const dispatch = useDispatch();
-  const { toggleCart, sumTotalQuantity } = useCartContext();
+  const cartTotalQuantity = useAppSelector(selectCartQuantity);
 
   const SignUserOut = async () => {
     await signOut(auth);
     dispatch(logoutUser());
+  };
+
+  const handleCartClick = () => {
+    dispatch(toggleCart());
   };
 
   return (
@@ -40,9 +46,9 @@ const Navigation = () => {
             </>
           )}
 
-          <S.Item to="#" onClick={toggleCart}>
+          <S.Item to="#" onClick={handleCartClick}>
             <BsCart3 size={22} />
-            {sumTotalQuantity}
+            {cartTotalQuantity}
           </S.Item>
         </S.ItemWrapper>
         <Cart />

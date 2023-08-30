@@ -1,14 +1,20 @@
 import { BsCartPlus } from "react-icons/bs";
 import * as S from "./Cart.styles";
-import useCartContext from "../../hooks/useCartContext";
 import { useEffect, useRef } from "react";
 import CartItem from "./components/CartItem/CartItem";
 import { useNavigate } from "react-router-dom";
+import { useCartReducer } from "../../hooks/useCartReducer";
+import { toggleCart } from "../../store/cart/cart.actions";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import { selectCartTotalPrice } from "../../store/cart/cart.selectors";
 
 const Cart = () => {
-  const { cart, sumCartTotal, toggleCart, isCartOpen } = useCartContext();
+  const { cart, isCartOpen } = useCartReducer();
+  const cartTotalPrice = useAppSelector(selectCartTotalPrice);
   const divRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -25,13 +31,17 @@ const Cart = () => {
   }, [isCartOpen]);
 
   const goToCheckout = () => {
-    toggleCart();
+    dispatch(toggleCart());
     navigate("checkout");
+  };
+
+  const handleClickOutside = () => {
+    dispatch(toggleCart());
   };
 
   return (
     <S.Background $isCartOpen={isCartOpen}>
-      <S.EscapeArea onClick={toggleCart} />
+      <S.EscapeArea onClick={handleClickOutside} />
       <S.SideBar ref={divRef}>
         <S.Title>Seu carrinho</S.Title>
         <S.ItemContainer>
@@ -39,13 +49,13 @@ const Cart = () => {
             <CartItem product={product} key={product.id} />
           ))}
         </S.ItemContainer>
-        {sumCartTotal > 0 && <S.Total>Total: R$ {sumCartTotal}</S.Total>}
-        {sumCartTotal > 0 && (
+        {cartTotalPrice > 0 && <S.Total>Total: R$ {cartTotalPrice}</S.Total>}
+        {cartTotalPrice > 0 && (
           <S.PayButton icon={<BsCartPlus size={23} />} onClick={goToCheckout}>
             Prosseguir com o pagamento
           </S.PayButton>
         )}
-        {sumCartTotal === 0 && <S.Empty>Seu carrinho está vazio :(</S.Empty>}
+        {cartTotalPrice === 0 && <S.Empty>Seu carrinho está vazio :(</S.Empty>}
       </S.SideBar>
     </S.Background>
   );

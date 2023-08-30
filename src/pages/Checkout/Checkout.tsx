@@ -1,13 +1,13 @@
 import { BsCartPlus } from "react-icons/bs";
 import Button from "../../components/Button/Button";
 import CheckoutItem from "../../components/CheckoutItem/CheckoutItem";
-import useCartContext from "../../hooks/useCartContext";
 import * as S from "./Checkout.styles";
 import { useState } from "react";
 import axios from "axios";
+import { useCartReducer } from "../../hooks/useCartReducer";
 
 const Checkout = () => {
-  const { cart } = useCartContext();
+  const { cart } = useCartReducer();
 
   const [isLoading, setIsLoading] = useState(false);
 

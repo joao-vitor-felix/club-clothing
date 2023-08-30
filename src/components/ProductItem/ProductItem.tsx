@@ -2,19 +2,23 @@ import { FC } from "react";
 import * as S from "./ProductItem.styles";
 import Product from "../../types/product.types";
 import { BsCartPlus } from "react-icons/bs";
-import useCartContext from "../../hooks/useCartContext";
+import { useCartReducer } from "../../hooks/useCartReducer";
+import { addProductToCart } from "../../store/cart/cart.actions";
+import { useDispatch } from "react-redux";
 
 type ProductItemProps = {
   product: Product;
 };
 
 const ProductItem: FC<ProductItemProps> = ({ product }) => {
-  const { cart, addToCart } = useCartContext();
   const { imageUrl, name, price } = product;
+  const { cart } = useCartReducer();
+  const dispatch = useDispatch();
+
   return (
     <S.Container>
       <S.Image $imageUrl={imageUrl}>
-        <S.CartButton onClick={() => addToCart(product, cart)}>
+        <S.CartButton onClick={() => dispatch(addProductToCart(product, cart))}>
           <BsCartPlus size={23} /> Adicionar ao carrinho
         </S.CartButton>
       </S.Image>
