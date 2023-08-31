@@ -14,8 +14,9 @@ import {
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../firebase/firebase.config";
 import { useNavigate } from "react-router-dom";
-import { useUserReducer } from "../../hooks/useUserReducer";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selectors";
 
 type FormData = {
   firstName: string;
@@ -61,7 +62,7 @@ const SignUp = () => {
   } = useForm<FormData>({ resolver: yupResolver(schema) });
 
   const [isLoading, setIsLoading] = useState(false);
-  const { currentUser } = useUserReducer();
+  const currentUser = useSelector(selectCurrentUser);
   const navigate = useNavigate();
 
   useEffect(() => {

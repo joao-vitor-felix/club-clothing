@@ -2,10 +2,11 @@ import { FC, PropsWithChildren, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loading from "../Loading/Loading";
-import { useUserReducer } from "../../hooks/useUserReducer";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selectors";
 
 const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
-  const { currentUser } = useUserReducer();
+  const currentUser = useSelector(selectCurrentUser);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

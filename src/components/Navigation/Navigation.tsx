@@ -6,12 +6,12 @@ import * as S from "./Navigation.styles";
 import Cart from "../Cart/Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/user/user.actions";
-import { useUserReducer } from "../../hooks/useUserReducer";
 import { toggleCart } from "../../store/cart/cart.actions";
 import { selectCartItemsCount } from "../../store/cart/cart.selectors";
+import { selectCurrentUser } from "../../store/user/user.selectors";
 
 const Navigation = () => {
-  const { currentUser } = useUserReducer();
+  const currentUser = useSelector(selectCurrentUser);
 
   const dispatch = useDispatch();
   const cartItemsCount = useSelector(selectCartItemsCount);

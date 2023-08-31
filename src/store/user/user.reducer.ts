@@ -2,7 +2,7 @@ import User from "../../types/user.types";
 import { UserActionTypes } from "./user.actions";
 import { USER_ACTION_TYPES } from "./user.types";
 
-type UserReducer = {
+export type UserReducer = {
   currentUser: User | null;
 };
 
