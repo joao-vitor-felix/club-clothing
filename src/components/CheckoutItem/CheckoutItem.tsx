@@ -1,13 +1,13 @@
 import * as S from "./CheckoutItem.styles";
 import Cart from "../../types/cart.type";
 import { FC } from "react";
-import { useCartReducer } from "../../hooks/useCartReducer";
-import { useDispatch } from "react-redux";
 import {
   addProductToCart,
   clearProductFromCart,
   removeProductFromCart
 } from "../../store/cart/cart.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartItems } from "../../store/cart/cart.selectors";
 
 type CheckoutItemProps = {
   product: Cart;
@@ -15,7 +15,7 @@ type CheckoutItemProps = {
 
 const CheckoutItem: FC<CheckoutItemProps> = ({ product }) => {
   const { imageUrl, name, price, quantity } = product;
-  const { cart } = useCartReducer();
+  const cart = useSelector(selectCartItems);
   const dispatch = useDispatch();
   return (
     <S.Container>

@@ -1,13 +1,13 @@
 import * as S from "./CartItem.styles";
 import Cart from "../../../../types/cart.type";
 import { FC } from "react";
-import { useDispatch } from "react-redux";
-import { useCartReducer } from "../../../../hooks/useCartReducer";
 import {
   addProductToCart,
   clearProductFromCart,
   removeProductFromCart
 } from "../../../../store/cart/cart.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartItems } from "../../../../store/cart/cart.selectors";
 
 type CartItemProps = {
   product: Cart;
@@ -15,8 +15,9 @@ type CartItemProps = {
 
 const CartItem: FC<CartItemProps> = ({ product }) => {
   const { imageUrl, name, price, quantity } = product;
-  const { cart } = useCartReducer();
+  const cart = useSelector(selectCartItems);
   const dispatch = useDispatch();
+
   return (
     <S.Container>
       <S.Image src={imageUrl} alt={`Imagem do produto ${name}`} />

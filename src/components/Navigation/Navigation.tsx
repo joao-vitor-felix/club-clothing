@@ -4,18 +4,17 @@ import { signOut } from "firebase/auth";
 import { BsCart3 } from "react-icons/bs";
 import * as S from "./Navigation.styles";
 import Cart from "../Cart/Cart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/user/user.actions";
 import { useUserReducer } from "../../hooks/useUserReducer";
 import { toggleCart } from "../../store/cart/cart.actions";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { selectCartQuantity } from "../../store/cart/cart.selectors";
+import { selectCartItemsCount } from "../../store/cart/cart.selectors";
 
 const Navigation = () => {
   const { currentUser } = useUserReducer();
 
   const dispatch = useDispatch();
-  const cartTotalQuantity = useAppSelector(selectCartQuantity);
+  const cartItemsCount = useSelector(selectCartItemsCount);
 
   const SignUserOut = async () => {
     await signOut(auth);
@@ -48,7 +47,7 @@ const Navigation = () => {
 
           <S.Item to="#" onClick={handleCartClick}>
             <BsCart3 size={22} />
-            {cartTotalQuantity}
+            {cartItemsCount}
           </S.Item>
         </S.ItemWrapper>
         <Cart />

@@ -1,13 +1,14 @@
+import { useState } from "react";
 import { BsCartPlus } from "react-icons/bs";
+import axios from "axios";
+import * as S from "./Checkout.styles";
 import Button from "../../components/Button/Button";
 import CheckoutItem from "../../components/CheckoutItem/CheckoutItem";
-import * as S from "./Checkout.styles";
-import { useState } from "react";
-import axios from "axios";
-import { useCartReducer } from "../../hooks/useCartReducer";
+import { selectCartItems } from "../../store/cart/cart.selectors";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
-  const { cart } = useCartReducer();
+  const cart = useSelector(selectCartItems);
 
   const [isLoading, setIsLoading] = useState(false);
 

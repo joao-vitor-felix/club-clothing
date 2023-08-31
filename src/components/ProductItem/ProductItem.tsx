@@ -2,9 +2,9 @@ import { FC } from "react";
 import * as S from "./ProductItem.styles";
 import Product from "../../types/product.types";
 import { BsCartPlus } from "react-icons/bs";
-import { useCartReducer } from "../../hooks/useCartReducer";
 import { addProductToCart } from "../../store/cart/cart.actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartItems } from "../../store/cart/cart.selectors";
 
 type ProductItemProps = {
   product: Product;
@@ -12,7 +12,7 @@ type ProductItemProps = {
 
 const ProductItem: FC<ProductItemProps> = ({ product }) => {
   const { imageUrl, name, price } = product;
-  const { cart } = useCartReducer();
+  const cart = useSelector(selectCartItems);
   const dispatch = useDispatch();
 
   return (

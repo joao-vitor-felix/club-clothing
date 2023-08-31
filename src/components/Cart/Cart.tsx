@@ -3,15 +3,19 @@ import * as S from "./Cart.styles";
 import { useEffect, useRef } from "react";
 import CartItem from "./components/CartItem/CartItem";
 import { useNavigate } from "react-router-dom";
-import { useCartReducer } from "../../hooks/useCartReducer";
 import { toggleCart } from "../../store/cart/cart.actions";
-import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { selectCartTotalPrice } from "../../store/cart/cart.selectors";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCartItems,
+  selectIsCartOpen,
+  selectCartItemsTotalPrice
+} from "../../store/cart/cart.selectors";
 
 const Cart = () => {
-  const { cart, isCartOpen } = useCartReducer();
-  const cartTotalPrice = useAppSelector(selectCartTotalPrice);
+  const cart = useSelector(selectCartItems);
+  const isCartOpen = useSelector(selectIsCartOpen);
+  const cartTotalPrice = useSelector(selectCartItemsTotalPrice);
+
   const divRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
