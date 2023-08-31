@@ -1,17 +1,25 @@
 import { useEffect } from "react";
 import * as S from "./CategoriesPreview.styles";
-import useCategoryContext from "../../hooks/useCategoryContext";
 import Loading from "../Loading/Loading";
 import CategoryPreview from "./components/CategoryPreview/CategoryPreview";
+import {
+  selectCategories,
+  selectIsLoading
+} from "../../store/categories/categories.selectors";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCategories } from "../../store/categories/categories.actions";
 
 const CategoriesPreview = () => {
-  const { categories, isLoading, fetchCategories } = useCategoryContext();
+  const categories = useSelector(selectCategories);
+  const isLoading = useSelector(selectIsLoading);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!categories.length) {
-      fetchCategories();
+      dispatch(fetchCategories() as any);
     }
   }, []);
+
   if (isLoading) return <Loading />;
 
   return (
