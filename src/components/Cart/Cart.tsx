@@ -23,7 +23,7 @@ const Cart = () => {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (isCartOpen && e.key === "Escape") {
-        toggleCart();
+        dispatch(toggleCart());
       }
     };
 
