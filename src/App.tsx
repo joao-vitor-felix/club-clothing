@@ -7,7 +7,6 @@ import { auth, db } from "./firebase/firebase.config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { userConverter } from "./firebase/firestore.converters";
 import { useDispatch } from "react-redux";
-import { loginUser } from "./store/user/user.actions";
 import Theme from "./Theme";
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./pages/Home/Home";
@@ -17,6 +16,7 @@ import Shop from "./pages/Shop/Shop";
 import Checkout from "./pages/Checkout/Checkout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import PaymentConfirmation from "./pages/PaymentConfirmation/PaymentConfirmation";
+import { loginUser } from "./store/user/user.slice";
 
 function App() {
   const dispatch = useDispatch();
