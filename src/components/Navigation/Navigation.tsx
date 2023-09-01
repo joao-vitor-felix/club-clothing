@@ -5,7 +5,7 @@ import { BsCart3 } from "react-icons/bs";
 import * as S from "./Navigation.styles";
 import Cart from "../Cart/Cart";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCart } from "../../store/cart/cart.actions";
+import { toggleCart } from "../../store/cart/cart.slice";
 import { selectCartItemsCount } from "../../store/cart/cart.selectors";
 import { selectCurrentUser } from "../../store/user/user.selectors";
 import { logoutUser } from "../../store/user/user.slice";

@@ -8,7 +8,7 @@ import {
 } from "react-icons/ai";
 import Button from "../../components/Button/Button";
 import { useDispatch } from "react-redux";
-import { clearCart } from "../../store/cart/cart.actions";
+import { clearCart } from "../../store/cart/cart.slice";
 
 const PaymentConfirmation: FC = () => {
   const [searchParams] = useSearchParams();

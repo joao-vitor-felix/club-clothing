@@ -1,13 +1,13 @@
 import * as S from "./CartItem.styles";
 import Cart from "../../../../types/cart.type";
 import { FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartItems } from "../../../../store/cart/cart.selectors";
 import {
   addProductToCart,
   clearProductFromCart,
   removeProductFromCart
-} from "../../../../store/cart/cart.actions";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCartItems } from "../../../../store/cart/cart.selectors";
+} from "../../../../store/cart/cart.slice";
 
 type CartItemProps = {
   product: Cart;
@@ -25,18 +25,14 @@ const CartItem: FC<CartItemProps> = ({ product }) => {
         <S.Name>{name}</S.Name>
         <S.PriceContainer>
           <S.Text>R$ {price}</S.Text>
-          <S.Remove
-            onClick={() => dispatch(clearProductFromCart(product, cart))}
-          />
+          <S.Remove onClick={() => dispatch(clearProductFromCart(product))} />
         </S.PriceContainer>
         <S.ButtonContainer>
           <S.Decrease
-            onClick={() => dispatch(removeProductFromCart(product, cart))}
+            onClick={() => dispatch(removeProductFromCart(product))}
           />
           <S.Text>{quantity}</S.Text>
-          <S.Increase
-            onClick={() => dispatch(addProductToCart(product, cart))}
-          />
+          <S.Increase onClick={() => dispatch(addProductToCart(product))} />
         </S.ButtonContainer>
       </S.Info>
     </S.Container>

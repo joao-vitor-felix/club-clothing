@@ -2,9 +2,9 @@ import { FC } from "react";
 import * as S from "./ProductItem.styles";
 import Product from "../../types/product.types";
 import { BsCartPlus } from "react-icons/bs";
-import { addProductToCart } from "../../store/cart/cart.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "../../store/cart/cart.selectors";
+import { addProductToCart } from "../../store/cart/cart.slice";
 
 type ProductItemProps = {
   product: Product;
@@ -18,7 +18,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
   return (
     <S.Container>
       <S.Image $imageUrl={imageUrl}>
-        <S.CartButton onClick={() => dispatch(addProductToCart(product, cart))}>
+        <S.CartButton onClick={() => dispatch(addProductToCart(product))}>
           <BsCartPlus size={23} /> Adicionar ao carrinho
         </S.CartButton>
       </S.Image>

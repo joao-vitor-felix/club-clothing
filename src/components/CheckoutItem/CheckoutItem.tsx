@@ -5,7 +5,7 @@ import {
   addProductToCart,
   clearProductFromCart,
   removeProductFromCart
-} from "../../store/cart/cart.actions";
+} from "../../store/cart/cart.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "../../store/cart/cart.selectors";
 
@@ -24,18 +24,14 @@ const CheckoutItem: FC<CheckoutItemProps> = ({ product }) => {
         <S.Name>{name}</S.Name>
         <S.PriceContainer>
           <S.Text>R$ {price}</S.Text>
-          <S.Remove
-            onClick={() => dispatch(clearProductFromCart(product, cart))}
-          />
+          <S.Remove onClick={() => dispatch(clearProductFromCart(product))} />
         </S.PriceContainer>
         <S.ButtonContainer>
           <S.Decrease
-            onClick={() => dispatch(removeProductFromCart(product, cart))}
+            onClick={() => dispatch(removeProductFromCart(product))}
           />
           <S.Text>{quantity}</S.Text>
-          <S.Increase
-            onClick={() => dispatch(addProductToCart(product, cart))}
-          />
+          <S.Increase onClick={() => dispatch(addProductToCart(product))} />
         </S.ButtonContainer>
       </S.Info>
     </S.Container>

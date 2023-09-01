@@ -3,7 +3,7 @@ import * as S from "./Cart.styles";
 import { useEffect, useRef } from "react";
 import CartItem from "./components/CartItem/CartItem";
 import { useNavigate } from "react-router-dom";
-import { toggleCart } from "../../store/cart/cart.actions";
+import { toggleCart } from "../../store/cart/cart.slice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCartItems,
