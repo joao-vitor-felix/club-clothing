@@ -7,7 +7,7 @@ import {
   selectIsLoading
 } from "../../store/categories/categories.selectors";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCategories } from "../../store/categories/categories.actions";
+import { fetchCategories } from "../../store/categories/categories.slice";
 
 const Categories = () => {
   const categories = useSelector(selectCategories);
