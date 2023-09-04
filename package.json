@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "test": "jest --verbose",
     "test:watch": "jest --watchAll --verbose",
+    "test:staged": "jest --passWithNoTests --findRelatedTests",
     "cypress": "npx cypress open",
     "generate": "plop --plopfile ./generators/plopfile.cjs",
     "postinstall": "husky install"
@@ -58,6 +59,7 @@
     "git-commit-msg-linter": "^5.0.4",
     "husky": "^8.0.3",
     "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.6.4",
     "jest-environment-jsdom": "^29.6.1",
     "lint-staged": "^13.2.3",
     "plop": "^3.1.2",
