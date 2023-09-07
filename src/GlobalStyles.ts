@@ -1,7 +1,8 @@
 import "react-toastify/dist/ReactToastify.css";
 import { createGlobalStyle } from "styled-components";
+import { ThemeType } from "./Theme";
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
 *,
 *::before,
 *::after {

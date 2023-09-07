@@ -1,6 +1,21 @@
 import { PropsWithChildren } from "react";
 import { ThemeProvider } from "styled-components";
 
+export type ThemeType = {
+  colors: {
+    primary: string;
+  };
+  text: {
+    primary: string;
+    secondary: string;
+  };
+  input: {
+    background: string;
+    placeholder: string;
+    error: string;
+  };
+};
+
 const theme = {
   colors: {
     primary: "#212529"
