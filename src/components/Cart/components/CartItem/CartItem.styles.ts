@@ -1,5 +1,5 @@
 import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { css, styled } from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
