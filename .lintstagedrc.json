@@ -1,12 +1,4 @@
 {
-  "*.ts": [
-    "eslint --ext .ts --fix",
-    "npx prettier --write",
-    "npm run test:staged"
-  ],
-  "*.tsx": [
-    "eslint --ext .tsx --fix",
-    "npx prettier --write",
-    "npm run test:staged"
-  ]
+  "*.ts": ["eslint --ext .ts --fix", "npx prettier --write", "npm test"],
+  "*.tsx": ["eslint --ext .tsx --fix", "npx prettier --write", "npm test"]
 }
