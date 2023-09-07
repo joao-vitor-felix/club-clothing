@@ -1,8 +1,7 @@
 import * as S from "./CartItem.styles";
 import Cart from "../../../../types/cart.type";
 import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCartItems } from "../../../../store/cart/cart.selectors";
+import { useDispatch } from "react-redux";
 import {
   addProductToCart,
   clearProductFromCart,
@@ -15,7 +14,6 @@ type CartItemProps = {
 
 const CartItem: FC<CartItemProps> = ({ product }) => {
   const { imageUrl, name, price, quantity } = product;
-  const cart = useSelector(selectCartItems);
   const dispatch = useDispatch();
 
   return (
