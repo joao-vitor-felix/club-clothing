@@ -45,7 +45,11 @@ const Navigation = () => {
             </>
           )}
 
-          <S.Item to="#" onClick={handleCartClick}>
+          <S.Item
+            to="#"
+            onClick={handleCartClick}
+            aria-label="Carrinho de compras"
+          >
             <BsCart3 size={22} />
             {cartItemsCount}
           </S.Item>
