@@ -23,14 +23,21 @@ const CartItem: FC<CartItemProps> = ({ product }) => {
         <S.Name>{name}</S.Name>
         <S.PriceContainer>
           <S.Text>R$ {price}</S.Text>
-          <S.Remove onClick={() => dispatch(clearProductFromCart(product))} />
+          <S.Remove
+            onClick={() => dispatch(clearProductFromCart(product))}
+            aria-label={`Remover ${name}`}
+          />
         </S.PriceContainer>
         <S.ButtonContainer>
           <S.Decrease
             onClick={() => dispatch(removeProductFromCart(product))}
+            aria-label={`Diminuir ${name}`}
           />
           <S.Text>{quantity}</S.Text>
-          <S.Increase onClick={() => dispatch(addProductToCart(product))} />
+          <S.Increase
+            onClick={() => dispatch(addProductToCart(product))}
+            aria-label={`Aumentar ${name}`}
+          />
         </S.ButtonContainer>
       </S.Info>
     </S.Container>
