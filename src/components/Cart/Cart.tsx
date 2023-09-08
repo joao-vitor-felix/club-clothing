@@ -59,7 +59,7 @@ const Cart = () => {
             Prosseguir com o pagamento
           </S.PayButton>
         )}
-        {cartTotalPrice === 0 && <S.Empty>Seu carrinho está vazio :(</S.Empty>}
+        {cartTotalPrice === 0 && <S.Empty>Seu carrinho está vazio!</S.Empty>}
       </S.SideBar>
     </S.Background>
   );
