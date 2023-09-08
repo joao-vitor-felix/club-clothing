@@ -3,7 +3,7 @@ import logger from "redux-logger";
 import thunk from "redux-thunk";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { configureStore } from "@reduxjs/toolkit";
+import { Middleware, configureStore } from "@reduxjs/toolkit";
 
 export type RootState = ReturnType<typeof rootReducer>;
 
@@ -15,9 +15,14 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+const middlewares = [
+  process.env.NODE_ENV === "development" && logger,
+  thunk
+].filter((middleware): middleware is Middleware => Boolean(middleware));
+
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: [thunk, logger]
+  middleware: middlewares
 });
 
 export const persistor = persistStore(store);
