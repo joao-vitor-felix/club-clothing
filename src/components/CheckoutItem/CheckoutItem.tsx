@@ -6,8 +6,7 @@ import {
   clearProductFromCart,
   removeProductFromCart
 } from "../../store/cart/cart.slice";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCartItems } from "../../store/cart/cart.selectors";
+import { useDispatch } from "react-redux";
 
 type CheckoutItemProps = {
   product: Cart;
@@ -15,7 +14,6 @@ type CheckoutItemProps = {
 
 const CheckoutItem: FC<CheckoutItemProps> = ({ product }) => {
   const { imageUrl, name, price, quantity } = product;
-  const cart = useSelector(selectCartItems);
   const dispatch = useDispatch();
   return (
     <S.Container>
@@ -24,14 +22,21 @@ const CheckoutItem: FC<CheckoutItemProps> = ({ product }) => {
         <S.Name>{name}</S.Name>
         <S.PriceContainer>
           <S.Text>R$ {price}</S.Text>
-          <S.Remove onClick={() => dispatch(clearProductFromCart(product))} />
+          <S.Remove
+            onClick={() => dispatch(clearProductFromCart(product))}
+            aria-label={`Remover ${name}`}
+          />
         </S.PriceContainer>
         <S.ButtonContainer>
           <S.Decrease
             onClick={() => dispatch(removeProductFromCart(product))}
+            aria-label={`Diminuir ${name}`}
           />
           <S.Text>{quantity}</S.Text>
-          <S.Increase onClick={() => dispatch(addProductToCart(product))} />
+          <S.Increase
+            onClick={() => dispatch(addProductToCart(product))}
+            aria-label={`Aumentar ${name}`}
+          />
         </S.ButtonContainer>
       </S.Info>
     </S.Container>
