@@ -11,12 +11,17 @@ export const CartButton = styled(Button)`
   opacity: 0;
   margin: 0 auto;
   margin: 2rem;
+
+  @media screen and (max-width: 768px) {
+    visibility: visible;
+    opacity: 1;
+  }
 `;
 
 export const Image = styled.div<ProductImageProps>`
   background-image: ${props => `url('${props.$imageUrl}')`};
   height: 38rem;
-  width: 30rem;
+  width: 25rem;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -41,6 +46,15 @@ export const Container = styled.div`
     ${Image} {
       background-color: grey;
       background-blend-mode: multiply;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    &:hover {
+      ${Image} {
+        background-color: transparent;
+        background-blend-mode: unset;
+      }
     }
   }
 `;
