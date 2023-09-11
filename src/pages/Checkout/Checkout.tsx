@@ -11,7 +11,7 @@ import {
 import { useSelector } from "react-redux";
 
 const Checkout = () => {
-  const cart = useSelector(selectCartItems);
+  const cartItems = useSelector(selectCartItems);
   const totalPrice = useSelector(selectCartItemsTotalPrice);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -21,12 +21,12 @@ const Checkout = () => {
       setIsLoading(true);
 
       const { data } = await axios.post(
-        `${process.env.VITE_API_URL}/create-checkout-session`,
+        "/.netlify/functions/create-checkout-session",
         {
-          cart
+          cartItems
         }
       );
-
+      console.log(data.url);
       window.location.href = data.url;
     } catch (error) {
       console.log(error);
@@ -38,9 +38,9 @@ const Checkout = () => {
   return (
     <S.Container>
       <S.Text>Checkout</S.Text>
-      {cart.length > 0 ? (
+      {cartItems.length > 0 ? (
         <>
-          {cart.map(item => (
+          {cartItems.map(item => (
             <CheckoutItem product={item} key={item.id} />
           ))}
           <S.Text>Total: R$ {totalPrice}</S.Text>
