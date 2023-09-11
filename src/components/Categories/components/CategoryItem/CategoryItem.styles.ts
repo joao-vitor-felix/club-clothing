@@ -27,8 +27,13 @@ export const Name = styled.div`
   border: 0.1rem solid #212529;
   box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
   transition: all 0.5s ease;
+  max-width: 60%;
 
   p {
     font-size: 1.5rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    max-width: 15rem;
   }
 `;
