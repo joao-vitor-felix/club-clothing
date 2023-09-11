@@ -8,6 +8,11 @@ export const Container = styled.div`
   width: 50%;
   margin: 0 auto;
   padding: 4rem 6rem;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding: 4rem;
+  }
 `;
 export const Text = styled.h2`
   font-size: 2.5rem;
