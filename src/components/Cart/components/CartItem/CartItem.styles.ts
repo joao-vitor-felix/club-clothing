@@ -9,10 +9,18 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 20rem;
+  width: 18rem;
   height: 100%;
   object-fit: cover;
   border-radius: 2rem;
+
+  @media screen and (max-width: 800px) {
+    width: 12rem;
+  }
+
+  @media screen and (min-width: 500px) and (max-width: 800px) {
+    width: 15rem;
+  }
 `;
 
 export const Info = styled.div`
