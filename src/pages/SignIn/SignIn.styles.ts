@@ -24,6 +24,10 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   width: 45rem;
+
+  @media screen and (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const Subtitle = styled.p`
