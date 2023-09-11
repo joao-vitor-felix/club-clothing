@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 0 4rem 2rem 4rem;
+  padding: 0 4rem;
+  height: 100%;
 `;
 
 export const Title = styled.div`
@@ -16,11 +17,16 @@ export const Title = styled.div`
 `;
 
 export const ProductsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-items: start;
-  margin-top: 0.5rem;
-  grid-row-gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const Icon = styled(Link)`
