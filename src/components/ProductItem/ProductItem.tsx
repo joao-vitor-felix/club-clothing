@@ -18,7 +18,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
       <S.Image $imageUrl={imageUrl}>
         <S.CartButton
           onClick={() => dispatch(addProductToCart(product))}
-          aria-label={`Adicionar ${name} ao carrinho`}
+          aria-label={`Adicionar ${name} ao carrinho de compras`}
         >
           <BsCartPlus size={23} /> Adicionar ao carrinho
         </S.CartButton>
