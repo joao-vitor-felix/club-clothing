@@ -5,6 +5,14 @@ export const Container = styled(S.Container)``;
 export const Name = styled(S.Name)``;
 export const Image = styled(S.Image)`
   width: 20rem;
+
+  @media screen and (max-width: 800px) {
+    width: 12rem;
+  }
+
+  @media screen and (min-width: 500px) and (max-width: 800px) {
+    width: 15rem;
+  }
 `;
 export const Text = styled(S.Text)``;
 export const Info = styled(S.Info)`
