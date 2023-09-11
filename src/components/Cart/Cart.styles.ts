@@ -27,13 +27,18 @@ export const SideBar = styled.div`
   flex-direction: column;
   gap: 2rem;
   background-color: white;
-  width: 25%;
+  width: 40%;
   height: 100vh;
   position: fixed;
-  top: 6rem;
+  top: 0;
   right: 0;
   padding: 2rem;
-  overflow: scroll;
+  overflow-y: scroll;
+
+  @media screen and (max-width: 800px) {
+    width: 70%;
+    padding: 1.5rem;
+  }
 `;
 
 export const Title = styled.h2`
