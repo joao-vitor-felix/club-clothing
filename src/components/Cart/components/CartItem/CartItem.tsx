@@ -25,18 +25,18 @@ const CartItem: FC<CartItemProps> = ({ product }) => {
           <S.Text>R$ {price}</S.Text>
           <S.Remove
             onClick={() => dispatch(clearProductFromCart(product))}
-            aria-label={`Remover ${name}`}
+            aria-label={`Remover ${name} do Carrinho`}
           />
         </S.PriceContainer>
         <S.ButtonContainer>
           <S.Decrease
             onClick={() => dispatch(removeProductFromCart(product))}
-            aria-label={`Diminuir ${name}`}
+            aria-label={`Diminuir ${name} do Carrinho`}
           />
           <S.Text>{quantity}</S.Text>
           <S.Increase
             onClick={() => dispatch(addProductToCart(product))}
-            aria-label={`Aumentar ${name}`}
+            aria-label={`Aumentar ${name} do Carrinho`}
           />
         </S.ButtonContainer>
       </S.Info>
