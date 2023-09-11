@@ -66,7 +66,7 @@ describe("Cart", () => {
       } as any
     });
 
-    const increaseButton = screen.getByLabelText("Aumentar Boné");
+    const increaseButton = screen.getByLabelText("Aumentar Boné do Carrinho");
     await userEvent.click(increaseButton);
     const quantity = screen.getByText("3");
     const totalPrice = screen.getByText("Total: R$ 300");
@@ -91,7 +91,7 @@ describe("Cart", () => {
       } as any
     });
 
-    const decreaseButton = screen.getByLabelText("Diminuir Boné");
+    const decreaseButton = screen.getByLabelText("Diminuir Boné do Carrinho");
 
     await userEvent.click(decreaseButton);
     const quantity = screen.getByText("1");
@@ -117,7 +117,7 @@ describe("Cart", () => {
       } as any
     });
 
-    const removeButton = screen.getByLabelText("Remover Boné");
+    const removeButton = screen.getByLabelText("Remover Boné do Carrinho");
     await userEvent.click(removeButton);
     const item = screen.queryByText("Boné");
     const cartMessage = screen.getByText("Seu carrinho está vazio!");
