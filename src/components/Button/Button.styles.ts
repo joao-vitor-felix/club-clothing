@@ -14,15 +14,15 @@ export const Button = styled.button`
   font-weight: 600;
   transition: all 0.5s ease;
   font-family: "Poppins", sans-serif;
+  cursor: pointer;
 
   &:hover {
-    cursor: pointer;
     background-color: #000000;
     transform: scale(1.05);
   }
 
   &:active {
-    transform: scale(0.95);
+    transform: translateY(0.3rem);
   }
 `;
 
