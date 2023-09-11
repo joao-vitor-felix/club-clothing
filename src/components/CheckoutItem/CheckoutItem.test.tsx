@@ -18,9 +18,9 @@ describe("Cart Item", () => {
     const item = screen.getByText("Boné");
     const price = screen.getByText("R$ 100");
     const quantity = screen.getByText("1");
-    const increaseButton = screen.getByLabelText("Aumentar Boné");
-    const decreaseButton = screen.getByLabelText("Diminuir Boné");
-    const removeButton = screen.getByLabelText("Remover Boné");
+    const increaseButton = screen.getByLabelText("Aumentar Boné do Checkout");
+    const decreaseButton = screen.getByLabelText("Diminuir Boné do Checkout");
+    const removeButton = screen.getByLabelText("Remover Boné do Checkout");
     expect(item).toBeInTheDocument();
     expect(price).toBeInTheDocument();
     expect(quantity).toBeInTheDocument();

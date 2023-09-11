@@ -24,18 +24,18 @@ const CheckoutItem: FC<CheckoutItemProps> = ({ product }) => {
           <S.Text>R$ {price}</S.Text>
           <S.Remove
             onClick={() => dispatch(clearProductFromCart(product))}
-            aria-label={`Remover ${name}`}
+            aria-label={`Remover ${name} do Checkout`}
           />
         </S.PriceContainer>
         <S.ButtonContainer>
           <S.Decrease
             onClick={() => dispatch(removeProductFromCart(product))}
-            aria-label={`Diminuir ${name}`}
+            aria-label={`Diminuir ${name} do Checkout`}
           />
           <S.Text>{quantity}</S.Text>
           <S.Increase
             onClick={() => dispatch(addProductToCart(product))}
-            aria-label={`Aumentar ${name}`}
+            aria-label={`Aumentar ${name} do Checkout`}
           />
         </S.ButtonContainer>
       </S.Info>
