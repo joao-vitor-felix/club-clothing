@@ -26,7 +26,6 @@ const Checkout = () => {
           cartItems
         }
       );
-      console.log(data.url);
       window.location.href = data.url;
     } catch (error) {
       console.log(error);
