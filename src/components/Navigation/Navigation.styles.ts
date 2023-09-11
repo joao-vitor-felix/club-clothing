@@ -12,6 +12,14 @@ export const Nav = styled.nav`
   padding: 3rem;
   position: sticky;
   top: 0;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    height: 10rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1.8rem;
+  }
 `;
 
 export const LogoContainer = styled(Link)`
@@ -33,6 +41,11 @@ export const ItemWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    justify-content: space-evenly;
+  }
 `;
 
 export const Item = styled(Link)`
