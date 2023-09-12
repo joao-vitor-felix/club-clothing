@@ -30,7 +30,9 @@ describe("ProductItem", () => {
     expect(quantity).toBeInTheDocument();
     expect(message).toBeInTheDocument();
 
-    const cartButton = screen.getByLabelText("Adicionar Boné ao carrinho");
+    const cartButton = screen.getByLabelText(
+      "Adicionar Boné ao carrinho de compras"
+    );
 
     await userEvent.click(cartButton);
     await userEvent.click(cartButton);
@@ -50,9 +52,11 @@ describe("ProductItem", () => {
 
     const item = screen.getByText("Boné");
     const price = screen.getByText("R$10");
-    const button = screen.getByText("Adicionar ao carrinho");
+    const cartButton = screen.getByLabelText(
+      "Adicionar Boné ao carrinho de compras"
+    );
     expect(item).toBeInTheDocument();
     expect(price).toBeInTheDocument();
-    expect(button).toBeInTheDocument();
+    expect(cartButton).toBeInTheDocument();
   });
 });
