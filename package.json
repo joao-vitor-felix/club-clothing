@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
-    "cypress:run:buy-product": "cypress run --spec cypress/e2e/buy-product.test.cy.ts",
+    "cypress:buy-product": "cypress run --spec cypress/e2e/buy-product.test.cy.ts",
     "generate": "plop --plopfile ./generators/plopfile.cjs",
     "postinstall": "npx husky install"
   },

@@ -78,7 +78,7 @@ Testes unitários:
 Teste E2E:
 
 ```bash
-  npm run cypress:run:buy-product
+  npm run cypress:buy-product
 ```
 
 ## ⌛ Deployment
