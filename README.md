@@ -5,7 +5,7 @@ O Club Clothing é um e-commerce de roupas. O usuário pode se cadastrar, navega
 ## 🎥 Demonstração
 
 <img 
-    src="https://imgur.com/kBWhsMt.gif"
+    src="https://imgur.com/Tj5jCYp.gif"
   />
 
 ## 💡 Funcionalidades
