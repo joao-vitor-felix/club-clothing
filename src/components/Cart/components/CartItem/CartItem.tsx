@@ -1,6 +1,6 @@
 import * as S from "./CartItem.styles";
 import Cart from "../../../../types/cart.type";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { useDispatch } from "react-redux";
 import {
   addProductToCart,
@@ -12,7 +12,7 @@ type CartItemProps = {
   product: Cart;
 };
 
-const CartItem: FC<CartItemProps> = ({ product }) => {
+const CartItem: FC<CartItemProps> = memo(({ product }) => {
   const { imageUrl, name, price, quantity } = product;
   const dispatch = useDispatch();
 
@@ -42,6 +42,6 @@ const CartItem: FC<CartItemProps> = ({ product }) => {
       </S.Info>
     </S.Container>
   );
-};
+});
 
 export default CartItem;

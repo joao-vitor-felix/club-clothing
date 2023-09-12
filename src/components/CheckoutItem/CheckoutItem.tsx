@@ -1,6 +1,6 @@
 import * as S from "./CheckoutItem.styles";
 import Cart from "../../types/cart.type";
-import { FC } from "react";
+import { FC, memo } from "react";
 import {
   addProductToCart,
   clearProductFromCart,
@@ -12,7 +12,7 @@ type CheckoutItemProps = {
   product: Cart;
 };
 
-const CheckoutItem: FC<CheckoutItemProps> = ({ product }) => {
+const CheckoutItem: FC<CheckoutItemProps> = memo(({ product }) => {
   const { imageUrl, name, price, quantity } = product;
   const dispatch = useDispatch();
   return (
@@ -41,6 +41,6 @@ const CheckoutItem: FC<CheckoutItemProps> = ({ product }) => {
       </S.Info>
     </S.Container>
   );
-};
+});
 
 export default CheckoutItem;
