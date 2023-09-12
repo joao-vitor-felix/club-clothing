@@ -13,8 +13,8 @@
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": true,
-    "tsconfigRootDir": "__dirname"
+    "project": ["./tsconfig.json", "./cypress/tsconfig.json"],
+    "tsconfigRootDir": ["__dirname"]
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint", "react-refresh"],
   "rules": {
