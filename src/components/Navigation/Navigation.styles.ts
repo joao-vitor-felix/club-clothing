@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { AiFillShopping } from "react-icons/ai";
+import { BiSolidShoppingBagAlt } from "react-icons/bi";
 
 export const Nav = styled.nav`
   width: 100%;
@@ -24,11 +24,11 @@ export const Nav = styled.nav`
 
 export const LogoContainer = styled(Link)`
   display: flex;
-  gap: 0.2rem;
+  gap: 0.5rem;
   text-align: center;
 `;
 
-export const Logo = styled(AiFillShopping)`
+export const Logo = styled(BiSolidShoppingBagAlt)`
   font-size: 2.5rem;
 `;
 
