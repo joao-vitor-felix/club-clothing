@@ -8,11 +8,13 @@ import {
 } from "../../store/categories/categories.selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCategories } from "../../store/categories/categories.slice";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 const CategoriesPreview = () => {
   const categories = useSelector(selectCategories);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
+  useDocumentTitle("Explorar | Club Clothing");
 
   useEffect(() => {
     if (!categories.length) {

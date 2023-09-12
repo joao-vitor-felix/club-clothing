@@ -9,10 +9,12 @@ import {
   selectCartItemsTotalPrice
 } from "../../store/cart/cart.selectors";
 import { useSelector } from "react-redux";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 const Checkout = () => {
   const cartItems = useSelector(selectCartItems);
   const totalPrice = useSelector(selectCartItemsTotalPrice);
+  useDocumentTitle("Checkout | Club Clothing");
 
   const [isLoading, setIsLoading] = useState(false);
 

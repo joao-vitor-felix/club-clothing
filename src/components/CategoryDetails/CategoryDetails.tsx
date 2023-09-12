@@ -9,6 +9,7 @@ import { db } from "../../firebase/firebase.config";
 import { categoryConverter } from "../../firebase/firestore.converters";
 import Loading from "../Loading/Loading";
 import ProductItem from "../ProductItem/ProductItem";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 type CategoryDetailsProps = {
   categoryId: string;
@@ -17,6 +18,7 @@ type CategoryDetailsProps = {
 const CategoryDetails: FC<CategoryDetailsProps> = ({ categoryId }) => {
   const [category, setCategory] = useState<Category | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  useDocumentTitle(`Explorar ${category?.displayName} | Club Clothing`);
 
   useEffect(() => {
     const fetchCategory = async () => {
