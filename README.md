@@ -83,7 +83,7 @@ Teste E2E:
 
 ## ⌛ Deployment
 
-Este repostório utiliza continuous deployment com o Netlify. Ou seja, toda vez que um commit é feito, o build para para produção é feito automaticamente.
+Este repostório utiliza continuous deployment com o Netlify. Ou seja, toda vez que um commit é feito, o build para produção é feito automaticamente.
 
 ## 🚀 Feedback
 
