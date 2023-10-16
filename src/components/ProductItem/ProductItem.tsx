@@ -23,7 +23,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
           <BsCartPlus size={23} /> Adicionar ao carrinho
         </S.CartButton>
       </S.Image>
-      <S.Info>
+      <S.Info $name={name}>
         <p>{name}</p>
         <p>R${price}</p>
       </S.Info>

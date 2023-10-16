@@ -59,13 +59,18 @@ export const Container = styled.div`
   }
 `;
 
-export const Info = styled.div`
+type InfoProps = {
+  $name: string;
+};
+
+export const Info = styled.div<InfoProps>`
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   margin-top: 1rem;
 
   p {
-    font-size: 1.7rem;
+    font-size: ${({ $name }) => ($name.length > 10 ? "1.5rem" : "1.7rem")};
     font-weight: 500;
   }
 `;
