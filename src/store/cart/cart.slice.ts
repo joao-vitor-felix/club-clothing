@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import Cart from "../../types/cart.type";
 import Product from "../../types/product.types";
+import { toast } from "react-toastify";
 
 export type CartReducer = {
   cartItems: Cart[];
@@ -30,9 +31,17 @@ const cartSlice = createSlice({
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
+        toast.success("Produto adicionado ao carrinho!", {
+          position: "bottom-center",
+          autoClose: 1000
+        });
         return;
       }
       state.cartItems = [...state.cartItems, { ...product, quantity: 1 }];
+      toast.success("Produto adicionado ao carrinho!", {
+        position: "bottom-center",
+        autoClose: 1000
+      });
     },
     removeProductFromCart: (state, action: PayloadAction<Product>) => {
       const product = action.payload;
@@ -44,16 +53,28 @@ const cartSlice = createSlice({
         state.cartItems = state.cartItems.filter(
           item => item.id !== product.id
         );
+        toast.error("Produto removido do carrinho!", {
+          position: "bottom-center",
+          autoClose: 1000
+        });
         return;
       }
 
       state.cartItems = state.cartItems.map(item =>
         item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
       );
+      toast.error("Produto removido do carrinho!", {
+        position: "bottom-center",
+        autoClose: 1000
+      });
     },
     clearProductFromCart: (state, action: PayloadAction<Product>) => {
       const product = action.payload;
       state.cartItems = state.cartItems.filter(item => item.id !== product.id);
+      toast.error("Produto removido do carrinho!", {
+        position: "bottom-center",
+        autoClose: 1000
+      });
     },
     clearCart: state => {
       state.cartItems = [];
