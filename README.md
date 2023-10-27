@@ -17,7 +17,7 @@ O Club Clothing é um e-commerce de roupas. O usuário pode se cadastrar, navega
 
 ## 🛠️ Stack utilizada
 
-**Front-end:** React, TypeScript, Redux Toolkit, styled-components, React Router, React Hook Form, Yup, Stripe API, Firebase, Jest, React Testing Library, Cypress.
+React, TypeScript, Redux Toolkit, styled-components, React Router, React Hook Form, Yup, Stripe API, Firebase, Jest, React Testing Library, Cypress.
 
 ## ⚙️ Variáveis de Ambiente
 
